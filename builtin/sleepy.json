@@ -1,0 +1,56 @@
+{
+  "format": 1,
+  "id": "sleepy",
+  "name": "Сонные",
+  "description": "Тяжёлые веки, медленный взгляд, всегда хотят спать",
+  "tags": [
+    "забавные"
+  ],
+  "palette": {
+    "#": "#2a1d14",
+    "w": "#fbf6ef",
+    "b": "#8a5a36",
+    "p": "#2a170c",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "...######...",
+    ".##wwwwww##.",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    ".#wwwwwwww#.",
+    "..##wwww##..",
+    "....####...."
+  ],
+  "sclera": "w",
+  "iris": [
+    ".bb.",
+    "bppb",
+    "bppb",
+    ".bb."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "h"
+  ],
+  "highlight_offset": [-1, -1],
+  "lid": "#e8c4a8",
+  "lash": "#5a3a26",
+  "travel": [3, 2],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [3, 7],
+    "style": "smooth",
+    "speed": 0.55,
+    "open": 0.5,
+    "stare": 0.2
+  },
+  "author": "@van1lLove"
+}

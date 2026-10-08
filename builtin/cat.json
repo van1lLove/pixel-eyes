@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "id": "cat",
+  "name": "Котик",
+  "description": "Жёлто-зелёные кошачьи глаза с вертикальным зрачком",
+  "tags": [
+    "милые",
+    "животные"
+  ],
+  "palette": {
+    "#": "#1c1a14",
+    "w": "#d6ee5f",
+    "g": "#a4c93c",
+    "p": "#121212",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "....######....",
+    "..##gggggg##..",
+    ".#gwwwwwwwwg#.",
+    "#gwwwwwwwwwwg#",
+    "#wwwwwwwwwwww#",
+    "#gwwwwwwwwwwg#",
+    ".#gwwwwwwwwg#.",
+    "..##gggggg##..",
+    "....######...."
+  ],
+  "sclera": "wg",
+  "iris": [
+    ".p.",
+    ".p.",
+    "ppp",
+    "ppp",
+    "ppp",
+    ".p.",
+    ".p."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "hh",
+    "h."
+  ],
+  "highlight_offset": [-3, -2],
+  "highlight_fixed": true,
+  "lid": "#4a4038",
+  "lash": "#121212",
+  "travel": [3, 1],
+  "layout": {
+    "count": 2,
+    "gap": 4,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [3, 8],
+    "style": "smooth",
+    "stare": 0.35,
+    "speed": 1.3
+  },
+  "author": "@van1lLove"
+}

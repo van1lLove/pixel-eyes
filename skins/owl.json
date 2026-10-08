@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "id": "owl",
+  "name": "Сова",
+  "description": "Круглые жёлтые совиные глаза в оранжевой оправе",
+  "tags": [
+    "милые",
+    "животные"
+  ],
+  "palette": {
+    "#": "#3a2412",
+    "o": "#e07b28",
+    "y": "#ffd23f",
+    "p": "#140c06",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "...######...",
+    ".##oooooo##.",
+    "#ooyyyyyyoo#",
+    "#oyyyyyyyyo#",
+    "#oyyyyyyyyo#",
+    "#oyyyyyyyyo#",
+    "#oyyyyyyyyo#",
+    "#ooyyyyyyoo#",
+    ".##oooooo##.",
+    "...######..."
+  ],
+  "sclera": "y",
+  "iris": [
+    ".pppp.",
+    "pppppp",
+    "pppppp",
+    "pppppp",
+    ".pppp."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "hh",
+    "h."
+  ],
+  "highlight_offset": [-1, -1],
+  "lid": "#a8682e",
+  "lash": "#3a2412",
+  "travel": [1, 1],
+  "layout": {
+    "count": 2,
+    "gap": 1,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [3, 9],
+    "style": "snap",
+    "stare": 0.5,
+    "speed": 0.9
+  },
+  "author": "@van1lLove"
+}

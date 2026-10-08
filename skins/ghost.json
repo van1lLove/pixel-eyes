@@ -1,0 +1,49 @@
+{
+  "format": 1,
+  "id": "ghost",
+  "name": "Призрак",
+  "description": "Пустые белые глаза-дыры, плывут за пальцем",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#2a2f3a",
+    "w": "#f4f7ff",
+    "k": "#0a0c12"
+  },
+  "eye": [
+    "..####..",
+    ".#wwww#.",
+    "#wwwwww#",
+    "#wwwwww#",
+    "#wwwwww#",
+    "#wwwwww#",
+    "#wwwwww#",
+    ".#wwww#.",
+    "..####.."
+  ],
+  "sclera": "w",
+  "iris": [
+    ".kk.",
+    "kkkk",
+    "kkkk",
+    "kkkk",
+    ".kk."
+  ],
+  "lid": "none",
+  "lash": "#2a2f3a",
+  "travel": [1, 2],
+  "layout": {
+    "count": 2,
+    "gap": 4,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [5, 12],
+    "style": "smooth",
+    "speed": 0.4,
+    "stare": 0.7,
+    "creepy": true
+  },
+  "author": "@van1lLove"
+}

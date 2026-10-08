@@ -1,0 +1,54 @@
+{
+  "format": 1,
+  "id": "demon",
+  "name": "Демон",
+  "description": "Красное яблоко и жёлтый змеиный зрачок",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#0d0405",
+    "r": "#8f0f17",
+    "v": "#5c0a10",
+    "y": "#ffcc1f",
+    "o": "#0d0405"
+  },
+  "eye": [
+    "....#####....",
+    "..##rrrrr##..",
+    ".#rrvrrrrrr#.",
+    "#rrrrrrrvrrr#",
+    "#rrrrrrrrrrr#",
+    "#rrvrrrrrrrr#",
+    ".#rrrrrrvrr#.",
+    "..##rrrrr##..",
+    "....#####...."
+  ],
+  "sclera": "rv",
+  "iris": [
+    ".y.",
+    "yoy",
+    "yoy",
+    "yoy",
+    "yoy",
+    ".y."
+  ],
+  "pupil": "o",
+  "lid": "#3a0a0e",
+  "lash": "#0d0405",
+  "travel": [3, 1],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [4, 10],
+    "style": "snap",
+    "slant": 0.35,
+    "stare": 0.5,
+    "creepy": true,
+    "speed": 1.2
+  },
+  "author": "@van1lLove"
+}

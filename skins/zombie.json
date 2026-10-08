@@ -1,0 +1,61 @@
+{
+  "format": 1,
+  "id": "zombie",
+  "name": "Зомби",
+  "description": "Мутные полуприкрытые глаза, моргают и дёргаются вразнобой",
+  "tags": [
+    "жуткие",
+    "забавные"
+  ],
+  "palette": {
+    "#": "#1e2a16",
+    "w": "#cfd8b0",
+    "v": "#7a8f3a",
+    "i": "#5c6b2a",
+    "p": "#141a0c"
+  },
+  "eye": [
+    "...######...",
+    ".##wwwwww##.",
+    "#wvwwwwwwww#",
+    "#wwvwwwwwww#",
+    "#wwwwwwwwvw#",
+    "#wwwwwwwvww#",
+    ".#wwvwwwww#.",
+    "..########.."
+  ],
+  "sclera": "wv",
+  "iris": [
+    ".i.",
+    "ipi",
+    ".i."
+  ],
+  "pupil": "p",
+  "lid": "#6f8a4a",
+  "lash": "#1e2a16",
+  "travel": [3, 2],
+  "layout": {
+    "eyes": [
+      {
+        "x": 0,
+        "y": 1
+      },
+      {
+        "x": 14,
+        "y": 0,
+        "mirror": true,
+        "scale": 1
+      }
+    ]
+  },
+  "behavior": {
+    "blink": [2, 6],
+    "style": "twitch",
+    "twitch": 0.35,
+    "open": 0.7,
+    "speed": 0.6,
+    "independent": true,
+    "creepy": true
+  },
+  "author": "@van1lLove"
+}

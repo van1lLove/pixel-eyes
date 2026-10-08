@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "id": "cartoon_pink",
+  "name": "Конфетка",
+  "description": "Мультяшные глаза с яркой розовой радужкой",
+  "tags": [
+    "милые"
+  ],
+  "palette": {
+    "#": "#2b1630",
+    "w": "#ffffff",
+    "s": "#f1e4f2",
+    "a": "#e0479e",
+    "b": "#ff8cc6",
+    "p": "#2b1630",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "....####....",
+    "..##wwww##..",
+    ".#wwwwwwww#.",
+    ".#wwwwwwww#.",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    ".#swwwwwws#.",
+    ".#sswwwwss#.",
+    "..##ssss##..",
+    "....####...."
+  ],
+  "sclera": "ws",
+  "iris": [
+    ".aaaa.",
+    "aabbaa",
+    "abppba",
+    "abppba",
+    "aabbaa",
+    ".aaaa."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "hh",
+    "h."
+  ],
+  "highlight_offset": [-1, -1],
+  "lid": "#ffd3e2",
+  "lash": "#2b1630",
+  "travel": [3, 3],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [2, 5],
+    "style": "smooth",
+    "stare": 0.25,
+    "speed": 1.1
+  },
+  "author": "@van1lLove"
+}

@@ -1,0 +1,54 @@
+{
+  "format": 1,
+  "id": "alien",
+  "name": "Пришелец",
+  "description": "Огромные чёрные миндалевидные глаза с отблеском",
+  "tags": [
+    "забавные",
+    "космос"
+  ],
+  "palette": {
+    "#": "#0b0f0a",
+    "k": "#050806",
+    "g": "#1d2b22",
+    "h": "#d8ffe6",
+    "e": "#8fe3a6"
+  },
+  "eye": [
+    "......####......",
+    "....##kkkk##....",
+    "..##kkkkkkkk##..",
+    ".#kkkkkkkkkkkk#.",
+    "#kkkkkkkkkkkkkk#",
+    "#kkkkkkkkkkkkkk#",
+    ".#kkkkkkkkkkkk#.",
+    "..#kkkkkkkkkk#..",
+    "...##kkkkkk##...",
+    ".....######....."
+  ],
+  "sclera": "k",
+  "iris": [
+    "gg",
+    "gg"
+  ],
+  "highlight": [
+    "hhe",
+    "he."
+  ],
+  "highlight_offset": [-2, -2],
+  "lid": "#5f7a52",
+  "lash": "#0b0f0a",
+  "travel": [4, 2],
+  "layout": {
+    "count": 2,
+    "gap": 2,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [4, 9],
+    "style": "snap",
+    "stare": 0.6,
+    "speed": 0.8
+  },
+  "author": "@van1lLove"
+}

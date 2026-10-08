@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "id": "frog",
+  "name": "Лягушка",
+  "description": "Выпученные лягушачьи глаза с горизонтальным зрачком",
+  "tags": [
+    "милые",
+    "животные"
+  ],
+  "palette": {
+    "#": "#1f3d14",
+    "g": "#4caf3a",
+    "y": "#e8e070",
+    "p": "#101010",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "...######...",
+    ".##gggggg##.",
+    "#ggyyyyyygg#",
+    "#gyyyyyyyyg#",
+    "#gyyyyyyyyg#",
+    "#gyyyyyyyyg#",
+    "#ggyyyyyygg#",
+    ".##gggggg##.",
+    "...######..."
+  ],
+  "sclera": "y",
+  "iris": [
+    "pppppp",
+    "pppppp"
+  ],
+  "pupil": "p",
+  "highlight": [
+    "h"
+  ],
+  "highlight_offset": [-2, -2],
+  "highlight_fixed": true,
+  "lid": "#4caf3a",
+  "lash": "#1f3d14",
+  "travel": [1, 2],
+  "layout": {
+    "count": 2,
+    "gap": 2,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [1.5, 4],
+    "style": "snap",
+    "stare": 0.4
+  },
+  "author": "@van1lLove"
+}

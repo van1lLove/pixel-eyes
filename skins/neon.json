@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "id": "neon",
+  "name": "Неон",
+  "description": "Розово-голубые светящиеся глаза в стиле ретровейв",
+  "tags": [
+    "техника",
+    "яркие"
+  ],
+  "palette": {
+    "#": "#ff2fb4",
+    "k": "#100318",
+    "c": "#22f0ff",
+    "C": "#e8fdff",
+    "m": "#7a1bff"
+  },
+  "eye": [
+    ".############.",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    "#kkkkkkkkkkkk#",
+    ".############."
+  ],
+  "sclera": "k",
+  "iris": [
+    ".cc.",
+    "cCCc",
+    "cCCc",
+    "cmmc",
+    ".cc."
+  ],
+  "lid": "#100318",
+  "lash": "#ff2fb4",
+  "travel": [4, 2],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [2.5, 6],
+    "style": "snap",
+    "speed": 1.5
+  },
+  "author": "@van1lLove"
+}

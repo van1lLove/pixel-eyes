@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "name": "Pixel Eyes",
+  "skins": [
+    {
+      "id": "alien",
+      "name": "Пришелец",
+      "author": "@van1lLove",
+      "description": "Огромные чёрные миндалевидные глаза с отблеском",
+      "tags": [
+        "забавные",
+        "космос"
+      ],
+      "url": "skins/alien.json",
+      "preview": "previews/alien.png"
+    },
+    {
+      "id": "owl",
+      "name": "Сова",
+      "author": "@van1lLove",
+      "description": "Круглые жёлтые совиные глаза в оранжевой оправе",
+      "tags": [
+        "милые",
+        "животные"
+      ],
+      "url": "skins/owl.json",
+      "preview": "previews/owl.png"
+    },
+    {
+      "id": "zombie",
+      "name": "Зомби",
+      "author": "@van1lLove",
+      "description": "Мутные полуприкрытые глаза, моргают и дёргаются вразнобой",
+      "tags": [
+        "жуткие",
+        "забавные"
+      ],
+      "url": "skins/zombie.json",
+      "preview": "previews/zombie.png"
+    },
+    {
+      "id": "neon",
+      "name": "Неон",
+      "author": "@van1lLove",
+      "description": "Розово-голубые светящиеся глаза в стиле ретровейв",
+      "tags": [
+        "техника",
+        "яркие"
+      ],
+      "url": "skins/neon.json",
+      "preview": "previews/neon.png"
+    },
+    {
+      "id": "frog",
+      "name": "Лягушка",
+      "author": "@van1lLove",
+      "description": "Выпученные лягушачьи глаза с горизонтальным зрачком",
+      "tags": [
+        "милые",
+        "животные"
+      ],
+      "url": "skins/frog.json",
+      "preview": "previews/frog.png"
+    },
+    {
+      "id": "ghost",
+      "name": "Призрак",
+      "author": "@van1lLove",
+      "description": "Пустые белые глаза-дыры, плывут за пальцем",
+      "tags": [
+        "жуткие"
+      ],
+      "url": "skins/ghost.json",
+      "preview": "previews/ghost.png"
+    }
+  ]
+}
