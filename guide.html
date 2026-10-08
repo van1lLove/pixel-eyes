@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Свои глаза: инструкция</title>
+<meta name="description" content="Подробная инструкция Pixel Eyes: как нарисовать свои пиксельные глаза, каждое поле файла, эмоции, свои кадры, ошибки, каталог.">
+<meta property="og:title" content="Как сделать свои глаза для Pixel Eyes">
+<meta property="og:description" content="От первого пикселя до каталога: урок с живыми примерами, справочник полей, советы по пиксель-арту.">
+<meta property="og:image" content="https://vladislavpolunin92-ux.github.io/pixel-eyes/previews/catalog.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1b22' d='M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z'/%3E%3Cpath fill='%23fff' d='M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z'/%3E%3Cpath fill='%2315151c' d='M3 3h2v2H3z'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('pe-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Tiny5&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/eyes.js" defer></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/guide.js" defer></script>
+</head>
+<body data-page="guide">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><canvas id="logo-eyes" aria-hidden="true"></canvas>Pixel Eyes</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Меню" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="./#download">Скачать</a>
+      <a href="./#eyes">Глаза</a>
+      <a href="guide.html" aria-current="page">Инструкция</a>
+      <a href="editor.html">Редактор</a>
+      <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a>
+      <button class="icon-btn" id="float-btn" type="button" title="Глаза поверх страницы, как в плагине">👀</button>
+      <button class="icon-btn" id="theme-btn" type="button" title="Тема">🌗</button>
+    </nav>
+  </div>
+</header>
+
+<!-- Примеры: из них страница строит живые глаза и код, поэтому код в тексте всегда настоящий -->
+<script type="application/json" id="ex-step1">
+{
+  "palette": {"#": "#1b1b22", "w": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    ".##wwww##.",
+    "...####..."
+  ]
+}
+</script>
+<script type="application/json" id="ex-step2">
+{
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "i": "#3d7bff", "p": "#101018"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    ".##wwww##.",
+    "...####..."
+  ],
+  "iris": [
+    ".ii.",
+    "ippi",
+    "ippi",
+    ".ii."
+  ],
+  "pupil": "p"
+}
+</script>
+<script type="application/json" id="ex-step3">
+{
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    ".##wwww##.",
+    "...####..."
+  ],
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1]
+}
+</script>
+<script type="application/json" id="ex-step4">
+{
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22"
+}
+</script>
+<script type="application/json" id="ex-step5">
+{
+  "format": 1,
+  "id": "blue_buttons",
+  "name": "Синие пуговки",
+  "author": "@you",
+  "description": "Маленькие круглые глаза с синей радужкой",
+  "tags": ["милые"],
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22"
+}
+</script>
+<script type="application/json" id="ex-move">
+{
+  "format": 1,
+  "id": "blue_buttons",
+  "name": "Синие пуговки",
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "iris_offset": [0, 0],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "highlight_fixed": false,
+  "travel": [2, 1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22"
+}
+</script>
+<script type="application/json" id="ex-behavior">
+{
+  "format": 1,
+  "id": "blue_buttons",
+  "name": "Синие пуговки",
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22",
+  "behavior": {
+    "blink": [2.5, 6],
+    "style": "smooth",
+    "speed": 1,
+    "stare": 0.15,
+    "twitch": 0,
+    "open": 1,
+    "slant": 0,
+    "independent": false,
+    "creepy": false
+  }
+}
+</script>
+<script type="application/json" id="ex-layout">
+{
+  "format": 1,
+  "id": "blue_buttons",
+  "name": "Синие пуговки",
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22",
+  "layout": {"count": 2, "gap": 3, "mirror": true}
+}
+</script>
+<script type="application/json" id="ex-custom-layout">
+{
+  "format": 1,
+  "id": "blue_trio",
+  "name": "Синее трио",
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22",
+  "layout": {
+    "eyes": [
+      {"x": 0, "y": 6},
+      {"x": 12, "y": 0, "scale": 2},
+      {"x": 34, "y": 6, "mirror": true}
+    ]
+  },
+  "behavior": {"independent": true, "blink": [1.5, 5]}
+}
+</script>
+<script type="application/json" id="ex-frames">
+{
+  "format": 1,
+  "id": "blue_buttons",
+  "name": "Синие пуговки",
+  "author": "@you",
+  "description": "Маленькие круглые глаза с синей радужкой",
+  "tags": ["милые"],
+  "palette": {"#": "#1b1b22", "w": "#ffffff", "s": "#d9deea", "i": "#3d7bff", "p": "#101018", "h": "#ffffff", "r": "#ff8fb1"},
+  "eye": [
+    "...####...",
+    ".##wwww##.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#swwwwwws#",
+    ".##ssss##.",
+    "...####..."
+  ],
+  "sclera": "ws",
+  "iris": [".ii.", "ippi", "ippi", ".ii."],
+  "pupil": "p",
+  "highlight": ["h"],
+  "highlight_offset": [-1, -1],
+  "lid": "#f2c9b0",
+  "lash": "#1b1b22",
+  "frames": {
+    "happy": [
+      "..........",
+      "..........",
+      "...####...",
+      ".##....##.",
+      "#........#",
+      "..........",
+      ".r......r.",
+      ".........."
+    ],
+    "closed": [
+      "..........",
+      "..........",
+      "..........",
+      "..........",
+      "#........#",
+      ".##....##.",
+      "...####...",
+      ".........."
+    ]
+  },
+  "behavior": {"blink": [2.5, 6], "style": "smooth", "stare": 0.15}
+}
+</script>
+<script type="application/json" id="ex-colors">
+{
+  "format": 1,
+  "id": "glass",
+  "name": "Стеклянные",
+  "palette": {
+    "#": "#2b2440",
+    "w": "#e9f6ff",
+    "g": "#4d9de0",
+    "G": "#2a6fb0",
+    "p": "#151026",
+    "h": "#ccffffff",
+    "H": "#55ffffff"
+  },
+  "eye": [
+    "..######..",
+    ".#wwwwww#.",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    "#wwwwwwww#",
+    ".#wwwwww#.",
+    "..######.."
+  ],
+  "iris": [".gg.", "gGGg", "gppg", "gppg", ".gg."],
+  "pupil": "p",
+  "highlight": ["hH", "H."],
+  "highlight_offset": [-1, -1],
+  "lid": "#9bb7d4",
+  "lash": "#2b2440"
+}
+</script>
+
+<main class="wrap doc">
+  <aside class="toc">
+    <nav>
+      <a href="#ways">Три способа</a>
+      <a href="#app-editor">Редактор в плагине</a>
+      <a href="#web-editor">Онлайн-редактор</a>
+      <a href="#anatomy">Из чего состоит глаз</a>
+      <a href="#tutorial">Урок: глаза с нуля</a>
+      <a class="sub" href="#step1">1. Контур и яблоко</a>
+      <a class="sub" href="#step2">2. Радужка и зрачок</a>
+      <a class="sub" href="#step3">3. Блик</a>
+      <a class="sub" href="#step4">4. Тень и веки</a>
+      <a class="sub" href="#step5">5. Имя и автор</a>
+      <a class="sub" href="#step6">6. Готово, проверяем</a>
+      <a href="#format">Как читается файл</a>
+      <a href="#colors">Палитра и цвета</a>
+      <a href="#movement">Как ходит радужка</a>
+      <a href="#pupil">Зрачок</a>
+      <a href="#highlight">Блик</a>
+      <a href="#lids">Веки и моргание</a>
+      <a href="#emotions">Эмоции</a>
+      <a href="#frames">Свои кадры</a>
+      <a href="#layout">Сколько глаз и где</a>
+      <a href="#behavior">Характер</a>
+      <a href="#fields">Все поля одной таблицей</a>
+      <a href="#screen">Как это выглядит на экране</a>
+      <a href="#tips">Советы по рисованию</a>
+      <a href="#add">Как добавить в плагин</a>
+      <a href="#share">Как поделиться</a>
+      <a href="#catalog">Как попасть в каталог</a>
+      <a href="#errors">Ошибки и что они значат</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+  </aside>
+
+  <article>
+    <h1>Свои глаза</h1>
+    <p class="lead">Здесь всё, что нужно, чтобы нарисовать свои глаза для Pixel Eyes: от первого пикселя до своих кадров эмоций и публикации в каталоге. Все примеры живые: глаза следят за курсором или пальцем, кнопки под ними включают эмоции, а код рядом можно скопировать или открыть в редакторе.</p>
+    <details class="card toc-mobile"><summary>Содержание</summary><nav></nav></details>
+
+    <section id="ways">
+      <h2>Три способа</h2>
+      <div class="grid3">
+        <div class="card" style="padding:16px">
+          <h3 style="margin-top:0">📱 В плагине</h3>
+          <p>Быстро и без компьютера. Глаз, радужка, блик, палитра, характер взгляда. Подходит для большинства глаз.</p>
+          <a href="#app-editor">Как пользоваться</a>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="margin-top:0">🖥 Онлайн-редактор</h3>
+          <p>Всё из плагина плюс свои кадры эмоций, много глаз в любом месте, все настройки характера и проверка ошибок.</p>
+          <a href="editor.html">Открыть</a>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="margin-top:0">📝 Руками в JSON</h3>
+          <p>Глаза это обычный текстовый файл. Его можно написать в любом редакторе, даже в заметках телефона.</p>
+          <a href="#tutorial">Урок с нуля</a>
+        </div>
+      </div>
+      <p style="margin-top:16px">Все три способа дают один и тот же файл, поэтому их можно смешивать: начать в плагине, дорисовать кадры в онлайн-редакторе, поправить пару чисел руками.</p>
+    </section>
+
+    <section id="app-editor">
+      <h2>Редактор в плагине</h2>
+      <ol>
+        <li>Откройте настройки Pixel Eyes и раздел <b>"Свои глаза и каталог"</b>.</li>
+        <li>Нажмите <b>"Нарисовать новые"</b>, чтобы начать с чистого листа, или <b>"Изменить текущие"</b>, чтобы переделать выбранные глаза. Встроенные откроются копией с id <code>my_...</code>, оригинал не изменится.</li>
+        <li>Сверху живой пример: он показывает результат после каждого пикселя и следит за пальцем.</li>
+        <li>Впишите <b>название</b>.</li>
+        <li>Выберите <b>слой</b>: "Глаз", "Радужка" или "Блик". Каждый слой рисуется отдельно, у каждого свой размер.</li>
+        <li>Выберите <b>инструмент</b>: ✏️ Кисть, 🧽 Ластик, 🔲 Заливка (заливает одноцветную область), 💧 Пипетка (берёт цвет с холста). <b>↔️ Зеркало</b> рисует сразу с двух сторон, удобно для круглых глаз. <b>↩️ Отменить</b> помнит 40 шагов, <b>🗑 Очистить</b> стирает слой.</li>
+        <li>Кнопки <b>Ш −</b>, <b>Ш +</b>, <b>В −</b>, <b>В +</b> меняют ширину и высоту слоя.</li>
+        <li>Цвет выбирается в ряду палитры. <b>🎨 Сменить цвет</b> перекрашивает выбранную ячейку, <b>＋</b> добавляет новую.</li>
+        <li>Самое важное: на слое "Глаз" отметьте цвета глазного яблока кнопкой <b>👁 Это яблоко</b>. На цвете появится точка. По яблоку ходит радужка, его закрывают веки. Без яблока глаза не сохранятся: плагин скажет "Отметьте хотя бы один цвет глаза как яблоко".</li>
+        <li>Ниже: цвет <b>века</b> (последний вариант делает веко прозрачным), цвет <b>ресниц</b>, <b>👀 Два глаза</b> или <b>👁 Один глаз</b>, характер взгляда (плавный, резкий, дёрганый) и <b>💀 Жуткие</b>.</li>
+        <li><b>"Сохранить"</b>: глаза запишутся в вашу папку и сразу выберутся.</li>
+      </ol>
+      <div class="note">
+        <p>Свои кадры эмоций, раскладку из многих глаз и тонкий характер (скорость, подёргивания, наклон век) редактор в плагине не рисует, но если они уже были в глазах, при сохранении он их не потеряет. Для них есть <a href="editor.html">онлайн-редактор</a> или JSON.</p>
+      </div>
+      <p>Долгое нажатие на глаза в списке "Выбрать глаза" открывает меню: <b>Скопировать</b> (JSON в буфер), <b>Изменить</b> (для встроенных "Изменить копию") и <b>Удалить</b> (только для своих).</p>
+    </section>
+
+    <section id="web-editor">
+      <h2>Онлайн-редактор</h2>
+      <p><a href="editor.html">Онлайн-редактор</a> работает в браузере на телефоне и на компьютере, ничего не устанавливает и не отправляет на сервер. Черновик сохраняется в браузере сам.</p>
+      <ul>
+        <li>Все слои: глаз, радужка, блик и все 8 кадров эмоций, для кадров под сеткой виден полупрозрачный глаз.</li>
+        <li>Инструменты: кисть, ластик, заливка, пипетка, зеркало, сдвиг слоя, отражение, отмена и повтор.</li>
+        <li>Палитра с любыми цветами и прозрачностью, отметки "яблоко" и "зрачок".</li>
+        <li>Все поля: сдвиги, ход радужки, блик, веки, раскладка из 1, 2 или до 12 глаз, весь характер.</li>
+        <li>Живой пример с кнопками эмоций, светлым и тёмным фоном.</li>
+        <li>Проверка теми же правилами, что в плагине, с понятным текстом ошибки и подсказками.</li>
+        <li>Готовые глаза: скопировать JSON, скачать файл или сразу отправить в Telegram через меню "Поделиться".</li>
+        <li>Любые глаза из каталога или встроенные можно открыть как основу.</li>
+      </ul>
+    </section>
+
+    <section id="anatomy">
+      <h2>Из чего состоит глаз</h2>
+      <p>Глаз рисуется слоями. Плагин сам двигает радужку, опускает веки, сужает зрачок и рисует эмоции, вы рисуете только неподвижные части.</p>
+      <div class="anatomy" data-anatomy="ex-step5"></div>
+      <ul>
+        <li><b>Глаз</b> (<code>eye</code>): контур и глазное яблоко. Рисуется для левого глаза, правый получается отражением.</li>
+        <li><b>Яблоко</b> (<code>sclera</code>): клетки глаза, по которым ходит радужка и которые закрывают веки. Это не отдельная картинка, а пометка: какие символы сетки считать яблоком.</li>
+        <li><b>Радужка</b> (<code>iris</code>): маленькая картинка, которая ездит по яблоку туда, куда смотрят глаза. Всё, что вылезает за яблоко, обрезается.</li>
+        <li><b>Зрачок</b> (<code>pupil</code>): один цвет внутри радужки. Плагин расширяет и сужает его по эмоции.</li>
+        <li><b>Блик</b> (<code>highlight</code>): светлое пятнышко поверх радужки.</li>
+        <li><b>Веко</b> (<code>lid</code>) и <b>ресницы</b> (<code>lash</code>): цвета. Само веко плагин рисует сам при моргании, сне и эмоциях.</li>
+      </ul>
+    </section>
+
+    <section id="tutorial">
+      <h2>Урок: глаза с нуля</h2>
+      <p>Соберём глаза по шагам. После каждого шага глаза рядом с кодом уже работают: можно поводить мышкой или пальцем и понажимать эмоции.</p>
+
+      <h3 id="step1">Шаг 1. Контур и яблоко</h3>
+      <p>Минимальный файл: палитра и сетка глаза. Сетка это строки одинаковой длины, каждый символ это пиксель. Точка прозрачна, остальные символы берут цвет из <code>palette</code>. Здесь <code>#</code> тёмный контур, <code>w</code> белое яблоко.</p>
+      <div class="card demo" data-demo="ex-step1" data-title="Шаг 1: только глаз" data-warn data-emotions="happy,surprised,asleep"></div>
+      <p>Поле <code>sclera</code> мы не писали: по умолчанию яблоком считается символ <code>w</code>. А вот радужки нет, поэтому плагин рисует вместо неё чёрный квадратик 2 на 2. Подсказки проверки под примером говорят то же самое. Глаз 10 на 8 пикселей: хороший размер для начала.</p>
+
+      <h3 id="step2">Шаг 2. Радужка и зрачок</h3>
+      <p>Добавляем в палитру синий <code>i</code> и почти чёрный <code>p</code>, рисуем радужку 4 на 4 и говорим, что <code>p</code> это зрачок. Радужка встаёт в центр яблока и ездит по нему за взглядом.</p>
+      <div class="card demo" data-demo="ex-step2" data-title="Шаг 2: радужка" data-emotions="stare,surprised,love,dizzy"></div>
+      <p>Нажмите 👀 и 😮: зрачок становится шире и уже. Это работает только потому, что задан <code>"pupil": "p"</code>. Нажмите 😍 и 😵: в эти моменты плагин рисует вместо радужки сердечко и спираль сам.</p>
+
+      <h3 id="step3">Шаг 3. Блик</h3>
+      <p>Один белый пиксель, сдвинутый на 1 влево и на 1 вверх от центра радужки, сразу делает глаз живым.</p>
+      <div class="card demo" data-demo="ex-step3" data-title="Шаг 3: блик" data-emotions="stare,happy,asleep"></div>
+
+      <h3 id="step4">Шаг 4. Тень и веки</h3>
+      <p>Добавим снизу яблока светло-серую тень <code>s</code>. Чтобы радужка ездила и по ней, а веко её закрывало, пишем оба символа в <code>sclera</code>: <code>"ws"</code>. Цвет века телесный, кромка века и линия закрытого глаза тёмные.</p>
+      <div class="card demo" data-demo="ex-step4" data-title="Шаг 4: тень и веки" data-emotions="asleep,happy,angry,sad,wink,suspicious"></div>
+      <p>Без <code>lid</code> веко было бы цвета контура. Это тоже нормально, но с отдельным цветом моргание видно лучше.</p>
+
+      <h3 id="step5">Шаг 5. Имя и автор</h3>
+      <p>Осталось подписать глаза. <code>id</code> это внутреннее имя латиницей, по нему плагин отличает одни глаза от других. <code>name</code> видно в списке, <code>author</code> и <code>description</code> в каталоге, <code>tags</code> нужны для фильтра.</p>
+      <div class="card demo" data-demo="ex-step5" data-title="Шаг 5: готовый файл" data-warn></div>
+
+      <h3 id="step6">Шаг 6. Готово, проверяем</h3>
+      <p>Это уже полноценные глаза. Чтобы поставить их в плагин:</p>
+      <ol>
+        <li>Нажмите "Скопировать" над примером.</li>
+        <li>В плагине: "Свои глаза и каталог", "Из буфера обмена". Или отправьте текст себе в Избранное, зажмите сообщение и выберите "Добавить глаза".</li>
+        <li>Глаза сохранятся и сразу выберутся.</li>
+      </ol>
+      <p>Дальше в инструкции разобрано всё, что ещё можно настроить: <a href="#movement">как ходит радужка</a>, <a href="#behavior">характер</a>, <a href="#frames">свои кадры</a>, <a href="#layout">много глаз</a>.</p>
+    </section>
+
+    <section id="format">
+      <h2>Как читается файл</h2>
+      <p>Файл глаз это <a href="https://ru.wikipedia.org/wiki/JSON">JSON</a>. Правила строгие, потому что плагин читает файл обычным разборщиком JSON:</p>
+      <ul>
+        <li>Весь файл это один объект в фигурных скобках <code>{ }</code>.</li>
+        <li>Ключи и строки только в двойных прямых кавычках <code>"..."</code>. Ёлочки «», косые “” и одинарные '' не подходят. Клавиатура телефона любит менять кавычки сама: если набираете руками, отключите это или проверьте файл в онлайн-редакторе.</li>
+        <li>Между элементами запятые, после последнего запятой нет.</li>
+        <li>Комментариев <code>//</code> нет.</li>
+        <li>Регистр важен: <code>"Eye"</code> не то же самое, что <code>"eye"</code>, а <code>w</code> и <code>W</code> в палитре это разные символы.</li>
+        <li>Порядок полей любой. Незнакомые поля плагин пропускает, поэтому опечатка в имени поля ошибки не даст, поле просто не сработает.</li>
+      </ul>
+      <h3>Сетки</h3>
+      <p>Сетки (<code>eye</code>, <code>iris</code>, <code>highlight</code>, кадры в <code>frames</code>) это массив строк, по строке на ряд пикселей:</p>
+<pre><code>"eye": [
+  "...####...",
+  ".##wwww##.",
+  "#wwwwwwww#"
+]</code></pre>
+      <ul>
+        <li>Точка <code>.</code> и пробел прозрачны.</li>
+        <li>Любой другой символ должен быть в палитре, иначе ошибка с номером строки.</li>
+        <li>Строки могут быть разной длины: короткие дополняются прозрачным справа. Но ровные строки читать и править проще.</li>
+        <li>Сетку можно написать и одной строкой с переносами <code>\n</code>, но массив нагляднее.</li>
+        <li>Глаз и кадры не больше 32 на 32 пикселя. Радужка и блик не больше самого глаза.</li>
+      </ul>
+    </section>
+
+    <section id="colors">
+      <h2>Палитра и цвета</h2>
+      <p><code>palette</code> связывает символ с цветом: <code>{"w": "#ffffff", "p": "#101018"}</code>. Одна палитра на все сетки: глаз, радужку, блик и кадры.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Запись</th><th>Пример</th><th>Что значит</th></tr>
+        <tr><td><code>#RGB</code></td><td><code>#f80</code></td><td>Коротко, каждая цифра удваивается: <code>#ff8800</code></td></tr>
+        <tr><td><code>#RRGGBB</code></td><td><code>#3d7bff</code></td><td>Обычный цвет</td></tr>
+        <tr><td><code>#AARRGGBB</code></td><td><code>#80ffffff</code></td><td>С прозрачностью. <b>Прозрачность первой</b>, как на Android: <code>80</code> это примерно половина, <code>ff</code> непрозрачно, <code>00</code> невидимо</td></tr>
+      </table></div>
+      <div class="note warn"><p>В CSS и Figma прозрачность пишут в конце (<code>#RRGGBBAA</code>), а здесь в начале. <code>#ffffff80</code> плагин прочитает как непрозрачный светло-жёлтый <code>#ffff80</code>, а не как белый 50%.</p></div>
+      <ul>
+        <li>Символ палитры ровно один: буква, цифра, знак, даже кириллица. Нельзя только точку и пробел.</li>
+        <li>Названия цветов (<code>"white"</code>, <code>"red"</code>) не поддерживаются, только <code>#</code>-запись.</li>
+        <li>Полупрозрачные цвета смешиваются с тем, что под ними: так получаются стеклянные блики.</li>
+      </ul>
+      <div class="card demo" data-demo="ex-colors" data-title="Полупрозрачный блик #ccffffff и #55ffffff" data-emotions="stare,surprised,happy"></div>
+    </section>
+
+    <section id="movement">
+      <h2>Как ходит радужка</h2>
+      <p>Центр радужки ставится в центр прямоугольника, в который вписано яблоко (все клетки символов из <code>sclera</code>). Когда глаза смотрят в сторону, радужка сдвигается на <code>travel</code> пикселей. Рисуется она только поверх клеток яблока, всё остальное обрезается: поэтому радужка никогда не вылезает за контур.</p>
+      <ul>
+        <li><code>travel</code> <code>[x, y]</code>: насколько далеко радужка уходит от центра, от 0 до 10. Если не задан, считается сам: по горизонтали половина свободного места (ширина яблока минус ширина радужки, пополам, но не меньше 1), по вертикали так же.</li>
+        <li><code>iris_offset</code> <code>[x, y]</code>: сдвиг радужки в покое. Например, <code>[0, 1]</code> опускает её на пиксель, как у аниме-глаз. У отражённого глаза сдвиг по x тоже отражается.</li>
+        <li>Взгляд: за пальцем, за курсором при наборе, на шапку чата, прямо на вас и по сторонам без дела. Обычно глаза смотрят дальше по горизонтали, чем по вертикали.</li>
+      </ul>
+      <p>Подвигайте ползунки и поводите курсором по странице:</p>
+      <div class="card demo" data-demo="ex-move" data-title="Песочница: ход радужки и блик" data-emotions="stare,surprised"
+           data-controls='[{"path":"travel.0","label":"travel x","min":0,"max":5},{"path":"travel.1","label":"travel y","min":0,"max":4},{"path":"iris_offset.0","label":"iris_offset x","min":-3,"max":3},{"path":"iris_offset.1","label":"iris_offset y","min":-3,"max":3},{"path":"highlight_offset.0","label":"блик x","min":-3,"max":3},{"path":"highlight_offset.1","label":"блик y","min":-3,"max":3},{"path":"highlight_fixed","label":"блик на месте","type":"check"}]'></div>
+      <div class="note"><p><b>Чётность.</b> Если ширина яблока чётная, радужку тоже делайте чётной ширины (2, 4, 6), а для нечётного яблока нечётной. Иначе в покое она встанет на полпикселя криво. С высотой так же.</p></div>
+    </section>
+
+    <section id="pupil">
+      <h2>Зрачок</h2>
+      <p><code>pupil</code> это один символ палитры, который есть внутри радужки. Плагин умеет делать зрачок шире и уже на 1 и на 2 шага: на каждом шаге зрачок обрастает слоем пикселей цвета зрачка или теряет внешний слой. Если сузить нечего, остаётся одна точка в середине.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Когда</th><th>Зрачок</th></tr>
+        <tr><td>Смотрят на вас после набора</td><td>Шире</td></tr>
+        <tr><td>Грусть, любопытство</td><td>Чуть шире</td></tr>
+        <tr><td>Подозрение, сосредоточенность</td><td>Чуть уже</td></tr>
+        <tr><td>Злость, перетаскивание</td><td>Уже</td></tr>
+        <tr><td>Удивление, испуг</td><td>Сильно уже</td></tr>
+        <tr><td>Влюблённость</td><td>Сердечко вместо радужки (розовое, 5 на 5 или 3 на 3 у маленьких радужек)</td></tr>
+        <tr><td>Головокружение</td><td>Крутящаяся спираль цветом зрачка и основного цвета радужки</td></tr>
+        <tr><td>"Ай"</td><td>Радужки нет, глаз зажмурен знаком ><</td></tr>
+      </table></div>
+      <p>Без <code>pupil</code> зрачок всегда одного размера, а спираль берёт тёмный цвет по умолчанию. Расти зрачку есть куда только внутри радужки: вокруг него нужен хотя бы один слой другого цвета. Если радужка вся одного цвета, размер не меняется.</p>
+    </section>
+
+    <section id="highlight">
+      <h2>Блик</h2>
+      <ul>
+        <li>Ставится по центру радужки плюс <code>highlight_offset</code>. Если <code>"highlight_fixed": true</code>, то по центру яблока: блик стоит на месте, а радужка ездит под ним, как отражение окна на настоящем глазу.</li>
+        <li>У правого глаза блик <b>не отражается</b>: свет падает на оба глаза с одной стороны. Поэтому блик слева сверху будет слева сверху у обоих глаз.</li>
+        <li>Рисуется только поверх яблока и только в обычном взгляде: на сердечке, спирали и "ай" его нет.</li>
+        <li>Блик может быть картинкой: два-три пикселя разной яркости смотрятся богаче одного.</li>
+      </ul>
+    </section>
+
+    <section id="lids">
+      <h2>Веки и моргание</h2>
+      <p>Веки плагин рисует сам по каждому столбцу яблока: верхнее опускается сверху, нижнее поднимается снизу. Поэтому веко повторяет форму вашего глаза, а контур остаётся на месте.</p>
+      <ul>
+        <li><code>lid</code>: цвет века. Можно <code>"#цвет"</code>, символ палитры (<code>"s"</code>) или <code>"none"</code>: тогда веко прозрачное и закрытый глаз просто исчезает внутри контура. Если не задан, берётся цвет контура (самый частый цвет глаза вне яблока).</li>
+        <li><code>lash</code>: кромка века и линия закрытого глаза. По умолчанию это <code>lid</code>, затемнённый на 40%. При <code>"lid": "none"</code> по умолчанию линии нет, задайте <code>lash</code> сами, если она нужна.</li>
+        <li>Закрытый глаз рисуется линией: при сне спокойная дуга "‿", при радости и подмигивании улыбка "∩". У высоких глаз (яблоко от 11 пикселей) улыбка в две линии.</li>
+        <li>Моргание: 0.06 секунды закрыть, 0.1 открыть. Иногда глаза моргают дважды подряд. Когда клюют носом, моргают медленнее и чаще.</li>
+        <li>При злости и грусти верхнее веко наклоняется: у злых внутренние уголки ниже, у грустных наружные.</li>
+      </ul>
+      <div class="note warn"><p>Если <code>lid</code> совпадает с цветом яблока, моргание почти не видно. Делайте веко заметно темнее или теплее яблока.</p></div>
+    </section>
+
+    <section id="emotions">
+      <h2>Эмоции</h2>
+      <p>Эмоции рисует плагин, вам ничего делать не нужно. Но любую можно заменить своим кадром, об этом <a href="#frames">ниже</a>.</p>
+      <div class="emo-grid" data-emo-grid="ex-step5"></div>
+      <div class="table-wrap"><table>
+        <tr><th>Эмоция</th><th>Когда</th><th>Что рисует плагин</th><th>Свой кадр</th></tr>
+        <tr><td>Радость</td><td>Отправили сообщение</td><td>Глаза закрыты улыбкой "∩"</td><td><code>happy</code></td></tr>
+        <tr><td>Влюблённость</td><td>Сердечки или "люблю" в переписке</td><td>Зрачки сердцем, нижнее веко чуть выше, летят сердечки</td><td><code>love</code></td></tr>
+        <tr><td>Удивление</td><td>Новое сообщение в открытом чате, проснулись от касания</td><td>Широко открыты, зрачок узкий, "!"</td><td><code>surprised</code></td></tr>
+        <tr><td>Злость</td><td>Три тапа подряд</td><td>Веки наискосок, прищур, знак злости</td><td><code>angry</code></td></tr>
+        <tr><td>Грусть</td><td>Удалили сообщение</td><td>Веки домиком, капают слёзы</td><td><code>sad</code></td></tr>
+        <tr><td>Головокружение</td><td>Тряска, отпустили после перетаскивания</td><td>Зрачки спиралью, звёздочки</td><td><code>dizzy</code></td></tr>
+        <tr><td>Ай</td><td>Тап по глазам</td><td>Зажмурены ><, капля</td><td><code>ouch</code></td></tr>
+        <tr><td>Сон</td><td>Долго без дела, зажать и отпустить</td><td>Закрыты дугой "‿", летят Z</td><td><code>closed</code></td></tr>
+        <tr><td>Подмигивание</td><td>Скопировали текст</td><td>Правый глаз закрыт улыбкой</td><td>нет</td></tr>
+        <tr><td>Подозрение</td><td>Стёрли больше 12 символов подряд</td><td>Прищур</td><td>нет</td></tr>
+        <tr><td>Взгляд на вас</td><td>Перестали печатать (через 1.3 секунды)</td><td>Смотрят прямо, зрачок шире. Жуткие смотрят 6 секунд и не моргают</td><td>нет</td></tr>
+        <tr><td>Сосредоточенность</td><td>Печатаете</td><td>Чуть прищурены, бегают за курсором</td><td>нет</td></tr>
+        <tr><td>Любопытство</td><td>Собеседник печатает</td><td>Смотрят на шапку чата, "?"</td><td>нет</td></tr>
+        <tr><td>Клюют носом</td><td>Без дела дольше, чем "Засыпать через"</td><td>Веки на треть, моргают медленно</td><td>нет</td></tr>
+      </table></div>
+      <p>Ещё глаза сами по себе оглядываются при переходе между экранами, смотрят на новое сообщение, а ночью и при разряженной батарее открыты меньше.</p>
+    </section>
+
+    <section id="frames">
+      <h2>Свои кадры</h2>
+      <p><code>frames</code> заменяет нарисованную плагином эмоцию вашей картинкой. Кадр это сетка в той же палитре, что и глаз. Возможные имена:</p>
+      <p><code>closed</code> (сон), <code>happy</code>, <code>love</code>, <code>dizzy</code>, <code>angry</code>, <code>sad</code>, <code>ouch</code>, <code>surprised</code>.</p>
+      <div class="card demo" data-demo="ex-frames" data-title="Свои кадры радости и сна" data-emotions="happy,asleep,love,angry"></div>
+      <ul>
+        <li>Кадр показывается вместо всего глаза целиком: без радужки, век и блика. Частицы (сердечки, Z, слёзы) летят как обычно.</li>
+        <li>Кадр подгоняется под размер глаза по центру: меньший дополняется прозрачным, лишнее обрезается. Проще всего рисовать кадр того же размера, что и <code>eye</code>.</li>
+        <li>У правого глаза кадр отражается так же, как сам глаз.</li>
+        <li>Моргание и подмигивание кадрами не заменяются, их всегда рисуют веки.</li>
+        <li>Удобно начинать кадр с копии <code>eye</code> и стирать лишнее: так контур совпадёт.</li>
+      </ul>
+    </section>
+
+    <section id="layout">
+      <h2>Сколько глаз и где</h2>
+      <p>Обычный вариант: один или два глаза рядом.</p>
+      <div class="card demo" data-demo="ex-layout" data-title="Песочница: layout" data-emotions="wink,happy"
+           data-controls='[{"path":"layout.count","label":"count","min":1,"max":2},{"path":"layout.gap","label":"gap","min":0,"max":12},{"path":"layout.mirror","label":"mirror","type":"check"}]'></div>
+      <ul>
+        <li><code>count</code>: 1 или 2, по умолчанию 2.</li>
+        <li><code>gap</code>: пикселей между глазами, от 0 до 32, по умолчанию 2.</li>
+        <li><code>mirror</code>: отражать правый глаз, по умолчанию да. Без отражения оба глаза одинаковые, как у робота.</li>
+      </ul>
+      <h3>Любое число глаз в любом месте</h3>
+      <p>Вместо <code>count</code> можно перечислить глаза в <code>eyes</code>: до 12 штук, у каждого своё место и размер.</p>
+      <div class="card demo" data-demo="ex-custom-layout" data-title="Три глаза, средний вдвое больше" data-emotions="wink,surprised,asleep,dizzy"></div>
+      <ul>
+        <li><code>x</code>, <code>y</code>: левый верхний угол глаза в пикселях (x от 0 до 120, y от 0 до 60).</li>
+        <li><code>scale</code>: 1, 2 или 3, во сколько раз больше.</li>
+        <li><code>mirror</code>: отразить этот глаз. <b>Здесь по умолчанию нет</b>, в отличие от <code>count</code>.</li>
+        <li>Все глаза вместе должны поместиться в 128 на 64 пикселя.</li>
+        <li>Подмигивает последний глаз в списке, над ним же появляются Z и знак злости.</li>
+        <li>Чтобы глаза моргали и оглядывались вразнобой, включите <code>"independent": true</code> в характере. За пальцем они всё равно смотрят вместе.</li>
+      </ul>
+      <p>Посмотрите встроенные "Циклоп" (один большой глаз) и "Рой" (семь глаз разного размера) <a href="./#eyes">в галерее</a>.</p>
+    </section>
+
+    <section id="behavior">
+      <h2>Характер</h2>
+      <p><code>behavior</code> решает, как глаза двигаются. Все поля необязательные.</p>
+      <div class="card demo" data-demo="ex-behavior" data-title="Песочница: behavior" data-emotions="stare,angry,sad"
+           data-controls='[{"path":"behavior.blink.0","label":"blink от","min":0,"max":10,"step":0.5},{"path":"behavior.blink.1","label":"blink до","min":0,"max":15,"step":0.5},{"path":"behavior.style","label":"style","type":"select","options":["smooth","snap","twitch"]},{"path":"behavior.speed","label":"speed","min":0.2,"max":4,"step":0.1},{"path":"behavior.stare","label":"stare","min":0,"max":1,"step":0.05},{"path":"behavior.twitch","label":"twitch","min":0,"max":1,"step":0.05},{"path":"behavior.open","label":"open","min":0.3,"max":1,"step":0.05},{"path":"behavior.slant","label":"slant","min":-1,"max":1,"step":0.05},{"path":"behavior.independent","label":"independent","type":"check"},{"path":"behavior.creepy","label":"creepy","type":"check"}]'></div>
+      <div class="table-wrap"><table>
+        <tr><th>Поле</th><th>По умолчанию</th><th>Что делает</th></tr>
+        <tr><td><code>blink</code></td><td><code>[2.5, 6]</code></td><td>Пауза между морганиями в секундах: случайно от первого до второго числа. Одно число <code>4</code> значит примерно от 2.4 до 5.6. <code>[0, 0]</code>: не моргают совсем</td></tr>
+        <tr><td><code>style</code></td><td><code>"smooth"</code></td><td><code>smooth</code> плавно переводят взгляд, <code>snap</code> резко, <code>twitch</code> резко и всё время мелко дрожат</td></tr>
+        <tr><td><code>speed</code></td><td><code>1</code></td><td>Скорость взгляда, от 0.2 (сонно плывут) до 4 (мгновенно)</td></tr>
+        <tr><td><code>stare</code></td><td><code>0</code></td><td>От 0 до 1: как часто без дела смотрят прямо на вас, а не по сторонам. 1 значит всегда</td></tr>
+        <tr><td><code>twitch</code></td><td><code>0</code></td><td>От 0 до 1: внезапные мелкие рывки взгляда, чем больше, тем чаще</td></tr>
+        <tr><td><code>open</code></td><td><code>1</code></td><td>Насколько открыты веки в покое, от 0.3 до 1. Меньше 1: сонные или хитрые глаза</td></tr>
+        <tr><td><code>slant</code></td><td><code>0</code></td><td>Наклон верхнего века в покое, от −1 до 1. Больше нуля: злые, меньше: грустные</td></tr>
+        <tr><td><code>independent</code></td><td><code>false</code></td><td>Каждый глаз моргает и оглядывается сам по себе</td></tr>
+        <tr><td><code>creepy</code></td><td><code>false</code></td><td>Жуткие: после набора смотрят на вас 6 секунд вместо 3 и в это время не моргают</td></tr>
+      </table></div>
+      <p>Рецепты: милые <code>{"blink": [2, 5], "stare": 0.25, "speed": 1.1}</code>, сонные <code>{"open": 0.55, "speed": 0.5, "blink": [1.5, 4]}</code>, злые <code>{"slant": 0.5, "style": "snap"}</code>, жуткие <code>{"blink": [6, 14], "stare": 0.8, "twitch": 0.3, "creepy": true}</code>, безумные <code>{"style": "twitch", "twitch": 0.6, "speed": 2.5, "independent": true}</code>.</p>
+    </section>
+
+    <section id="fields">
+      <h2>Все поля одной таблицей</h2>
+      <p>Обязательно только <code>eye</code> (и палитра для его символов). Всё остальное по желанию.</p>
+      <div class="table-wrap"><table>
+        <tr><th>Поле</th><th>Что это</th><th>По умолчанию</th><th>Ограничения</th></tr>
+        <tr><td><code>format</code></td><td>Версия формата</td><td>нет</td><td>Сейчас <code>1</code>. Больше, чем знает плагин: ошибка "обновите плагин"</td></tr>
+        <tr><td><code>id</code></td><td>Внутреннее имя</td><td><code>"custom"</code></td><td>Латиница, цифры, <code>_</code>, <code>-</code>, до 32 символов. Заглавные станут строчными, пробелы станут <code>_</code>, остальное выкинется</td></tr>
+        <tr><td><code>name</code></td><td>Название в списке</td><td>как <code>id</code></td><td>До 40 символов</td></tr>
+        <tr><td><code>author</code></td><td>Автор</td><td>ваш @username</td><td>До 40 символов. Пустое плагин заполнит при сохранении</td></tr>
+        <tr><td><code>description</code></td><td>Описание</td><td>пусто</td><td>До 200 символов</td></tr>
+        <tr><td><code>tags</code></td><td>Метки</td><td>нет</td><td>До 8 штук по 20 символов</td></tr>
+        <tr><td><code>palette</code></td><td>Символ и цвет</td><td>пусто</td><td>Ключ ровно один символ, не точка и не пробел. Цвет <code>#RGB</code>, <code>#RRGGBB</code>, <code>#AARRGGBB</code></td></tr>
+        <tr><td><code>eye</code></td><td>Глаз (левый)</td><td><b>обязательно</b></td><td>До 32 на 32</td></tr>
+        <tr><td><code>sclera</code></td><td>Символы глазного яблока</td><td><code>"w"</code></td><td>Хотя бы одна такая клетка в <code>eye</code></td></tr>
+        <tr><td><code>iris</code></td><td>Радужка</td><td>чёрный квадрат 2 на 2</td><td>Не больше глаза</td></tr>
+        <tr><td><code>iris_offset</code></td><td>Сдвиг радужки <code>[x, y]</code></td><td><code>[0, 0]</code></td><td>В пределах размера глаза</td></tr>
+        <tr><td><code>pupil</code></td><td>Символ зрачка</td><td>нет</td><td>Один символ из палитры</td></tr>
+        <tr><td><code>travel</code></td><td>Ход радужки <code>[x, y]</code></td><td>по размеру яблока</td><td>От 0 до 10</td></tr>
+        <tr><td><code>highlight</code></td><td>Блик</td><td>нет</td><td>Не больше глаза</td></tr>
+        <tr><td><code>highlight_offset</code></td><td>Сдвиг блика <code>[x, y]</code></td><td><code>[0, 0]</code></td><td>В пределах размера глаза</td></tr>
+        <tr><td><code>highlight_fixed</code></td><td>Блик стоит на месте</td><td><code>false</code></td><td><code>true</code> или <code>false</code></td></tr>
+        <tr><td><code>lid</code></td><td>Цвет века</td><td>цвет контура</td><td><code>"#цвет"</code>, символ палитры или <code>"none"</code></td></tr>
+        <tr><td><code>lash</code></td><td>Цвет ресниц</td><td>веко темнее на 40%</td><td>Как у <code>lid</code></td></tr>
+        <tr><td><code>layout</code></td><td>Сколько глаз и где</td><td>2 глаза, отступ 2, отражение</td><td><code>{"count", "gap", "mirror"}</code> или <code>{"eyes": [...]}</code>, до 12 глаз, всё вместе до 128 на 64</td></tr>
+        <tr><td><code>frames</code></td><td>Свои кадры эмоций</td><td>нет</td><td>Имена: closed, happy, love, dizzy, angry, sad, ouch, surprised. До 32 на 32</td></tr>
+        <tr><td><code>behavior</code></td><td>Характер</td><td>см. <a href="#behavior">выше</a></td><td>blink, style, speed, stare, twitch, open, slant, independent, creepy</td></tr>
+      </table></div>
+      <p>Числа вне границ не ошибка: плагин сам прижмёт их к ближайшей границе. Например, <code>"speed": 10</code> станет 4.</p>
+    </section>
+
+    <section id="screen">
+      <h2>Как это выглядит на экране</h2>
+      <ul>
+        <li>Один пиксель сетки на экране это 1.5, 2.2, 3, 4 или 5.5 dp в зависимости от настройки "Размер" (по умолчанию "Средние", 3 dp). Глаз 12 пикселей шириной на средних это 36 dp, около 6 мм. Пара глаз по 32 пикселя занимает больше половины ширины экрана.</li>
+        <li>Вокруг глаз плагин оставляет поля: по 3 пикселя по бокам, 7 сверху под частицы и 4 снизу под слёзы.</li>
+        <li>Чтобы глаза было видно на любом фоне, плагин добавляет обводку: тень вниз-вправо на светлой теме и светлый контур на тёмной. Её можно сменить в настройке "Обводка".</li>
+        <li>Проверяйте глаза и на светлом, и на тёмном фоне: в онлайн-редакторе для этого есть переключатель.</li>
+      </ul>
+    </section>
+
+    <section id="tips">
+      <h2>Советы по рисованию</h2>
+      <h3>Размер</h3>
+      <p>Лучше всего смотрятся глаза от 8 до 16 пикселей. Меньше 6: радужке негде ходить. Больше 20: глаза закрывают пол-экрана, и мелкие ошибки бросаются в глаза.</p>
+      <h3>Круглый контур</h3>
+      <p>Круг в пикселях это ступеньки. Удобные заготовки (контур <code>#</code>, яблоко <code>w</code>):</p>
+<pre><code>8 на 8         10 на 10          12 на 12
+..####..       ...####...        ....####....
+.#wwww#.       .##wwww##.        ..##wwww##..
+#wwwwww#       .#wwwwww#.        .#wwwwwwww#.
+#wwwwww#       #wwwwwwww#        .#wwwwwwww#.
+#wwwwww#       #wwwwwwww#        #wwwwwwwwww#
+#wwwwww#       #wwwwwwww#        #wwwwwwwwww#
+.#wwww#.       #wwwwwwww#        #wwwwwwwwww#
+..####..       .#wwwwww#.        #wwwwwwwwww#
+               .##wwww##.        .#wwwwwwww#.
+               ...####...        .#wwwwwwww#.
+                                 ..##wwww##..
+                                 ....####....</code></pre>
+      <h3>Объём</h3>
+      <ul>
+        <li>Тень снизу яблока вторым светлым цветом сразу делает глаз круглым. Не забудьте добавить этот символ в <code>sclera</code>.</li>
+        <li>Радужка из двух-трёх оттенков: темнее сверху (тень от века), светлее снизу.</li>
+        <li>Блик в 1-2 пикселя сверху сбоку, у милых глаз два блика: большой и маленький.</li>
+      </ul>
+      <h3>Характер через форму</h3>
+      <ul>
+        <li><b>Милые</b>: большая радужка, крупный блик, свои кадры <code>happy</code> и <code>closed</code> дугами.</li>
+        <li><b>Жуткие</b>: красные прожилки в яблоке (ещё один символ в <code>sclera</code>), маленький зрачок или пустая радужка, без блика, <code>creepy</code> и <code>twitch</code>.</li>
+        <li><b>Злые и сонные</b>: <code>slant</code> и <code>open</code> в характере, а не нарисованное веко. Тогда плагин сможет их открывать.</li>
+        <li><b>Роботы</b>: прямоугольники, <code>"mirror": false</code>, <code>"style": "snap"</code>, свои кадры.</li>
+      </ul>
+      <h3>Частые промахи</h3>
+      <ul>
+        <li>Забыли отметить тень или прожилки как яблоко: радужка их не проходит, веко не закрывает.</li>
+        <li>Радужка шире яблока: края обрезаны, глаз смотрит "сквозь" контур.</li>
+        <li>Цвет века как у яблока: моргания не видно.</li>
+        <li>Нарисовали веко прямо в <code>eye</code>: оно не будет двигаться. Сонность задаётся через <code>open</code>.</li>
+      </ul>
+      <p>Самый быстрый путь: открыть похожие встроенные в <a href="editor.html">редакторе</a> и переделать.</p>
+    </section>
+
+    <section id="add">
+      <h2>Как добавить в плагин</h2>
+      <p>Все способы в настройках Pixel Eyes, раздел "Свои глаза и каталог". После добавления глаза сразу выбираются.</p>
+      <ol>
+        <li><b>Из каталога</b>: "Каталог глаз", нажать на глаза.</li>
+        <li><b>Из сообщения</b>: отправьте JSON текстом или файлом <code>.json</code> в любой чат, хоть себе в Избранное. Зажмите сообщение, в меню будет <b>"Добавить глаза"</b>. Файл сначала скачайте, нажав на него.</li>
+        <li><b>Из буфера обмена</b>: скопируйте JSON и нажмите "Из буфера обмена". Лишний текст вокруг и обёртка <code>```</code> не мешают.</li>
+        <li><b>По ссылке</b>: вставьте прямую ссылку на JSON в поле "Ссылка на JSON" и нажмите "Скачать по ссылке". С GitHub нужна raw-ссылка (кнопка "Raw" у файла).</li>
+        <li><b>Через папку</b>: путь показан в пункте "Папка с глазами". Файлы <code>.json</code> оттуда появляются в списке сами. На новых Android до этой папки сложно добраться из файлового менеджера, проще через сообщение.</li>
+      </ol>
+      <h3>Как плагин сохраняет</h3>
+      <ul>
+        <li>Если у вас уже есть свои глаза с таким же <code>id</code>, новые <b>заменяют</b> их. Так обновляют свои глаза.</li>
+        <li><code>id</code> встроенных занять нельзя: плагин сохранит копию с <code>_2</code> на конце.</li>
+        <li>Пустой <code>author</code> плагин заполнит вашим @username.</li>
+        <li>Файлы в папке с тем же <code>id</code>, что у встроенных, в списке не показываются.</li>
+      </ul>
+    </section>
+
+    <section id="share">
+      <h2>Как поделиться</h2>
+      <ul>
+        <li>В плагине: долгое нажатие на глаза в списке, "Скопировать", или "Скопировать текущие". JSON окажется в буфере, отправьте его в чат. У получателя в меню сообщения будет "Добавить глаза".</li>
+        <li>Длинное сообщение в Telegram не больше 4096 символов. Большие глаза со своими кадрами в это не влезают: отправляйте их <b>файлом</b> <code>.json</code>. В онлайн-редакторе кнопка "Отправить файлом" на телефоне открывает меню "Поделиться" сразу с файлом.</li>
+        <li>Можно выложить файл куда угодно (GitHub, gist) и дать ссылку: её добавляют через "Скачать по ссылке".</li>
+      </ul>
+    </section>
+
+    <section id="catalog">
+      <h2>Как попасть в каталог</h2>
+      <p>Каталог это этот репозиторий: плагин читает список <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/blob/main/index.json"><code>index.json</code></a> и файлы из папки <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/skins"><code>skins/</code></a>. Глаза в каталоге видят все, у кого стоит плагин.</p>
+      <h3>Просто</h3>
+      <p>Пришлите файл <a href="https://t.me/van1lLove">@van1lLove</a> в Telegram.</p>
+      <h3>Через GitHub</h3>
+      <ol>
+        <li>Войдите на GitHub и откройте <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">репозиторий</a>. Нажмите <b>Fork</b>: у вас появится своя копия.</li>
+        <li>В своей копии откройте папку <code>skins</code>, <b>Add file</b>, <b>Create new file</b>. Имя файла: ваш <code>id</code> и <code>.json</code>, например <code>blue_buttons.json</code>. Вставьте JSON, <b>Commit changes</b>.</li>
+        <li>Откройте <code>index.json</code>, карандаш, и добавьте запись в список <code>skins</code> (не забудьте запятую после предыдущей записи):
+<pre><code>{"id": "blue_buttons", "name": "Синие пуговки", "author": "@you",
+ "description": "Маленькие круглые глаза с синей радужкой", "tags": ["милые"],
+ "url": "skins/blue_buttons.json", "preview": "previews/blue_buttons.png"}</code></pre>
+          Картинку превью делать не нужно, её нарисуем сами.</li>
+        <li>Нажмите <b>Contribute</b>, <b>Open pull request</b>, опишите глаза парой слов.</li>
+      </ol>
+      <h3>Чтобы глаза приняли</h3>
+      <ul>
+        <li>Уникальный <code>id</code>, заполненные <code>name</code>, <code>author</code>, <code>description</code> и <code>tags</code>.</li>
+        <li>Без ошибок и подсказок проверки в онлайн-редакторе.</li>
+        <li>Глаза ваши, а не перерисованные чужие без спроса.</li>
+        <li>Без оскорбительного и 18+.</li>
+      </ul>
+    </section>
+
+    <section id="errors">
+      <h2>Ошибки и что они значат</h2>
+      <p>Плагин и онлайн-редактор проверяют глаза одинаково. Вот что значит каждая ошибка:</p>
+      <div class="table-wrap"><table>
+        <tr><th>Ошибка</th><th>Что не так</th></tr>
+        <tr><td>нет сетки "eye"</td><td>Нет поля <code>eye</code> или опечатка в имени</td></tr>
+        <tr><td>в "eye" нет ни одной клетки яблока</td><td>Ни один символ глаза не указан в <code>sclera</code>. Без <code>sclera</code> яблоком считается только <code>w</code></td></tr>
+        <tr><td>в "iris" символ 'x' (строка 3), а в палитре его нет</td><td>Символ из сетки не описан в <code>palette</code>. Номер строки считается с 1 внутри этой сетки</td></tr>
+        <tr><td>"eye" 40x12, больше допустимого 32x32</td><td>Сетка слишком большая. Для радужки и блика предел это размер глаза</td></tr>
+        <tr><td>"eye" пустая</td><td>Пустой массив или строки без символов</td></tr>
+        <tr><td>"eye" должна быть массивом строк</td><td>Вместо <code>[ ]</code> со строками там число или объект</td></tr>
+        <tr><td>в "eye" все строки должны быть в кавычках</td><td>Ряд записан без кавычек или числом</td></tr>
+        <tr><td>"palette" должна быть объектом</td><td>Палитра записана массивом, а нужно <code>{"символ": "#цвет"}</code></td></tr>
+        <tr><td>в палитре ключ "ab": нужен ровно один символ</td><td>Ключ палитры длиннее одного символа (эмодзи тоже не подходят)</td></tr>
+        <tr><td>символы '.' и пробел заняты под прозрачность</td><td>В палитре есть <code>"."</code> или <code>" "</code></td></tr>
+        <tr><td>palette.w: непонятный цвет "white"</td><td>Цвет не в формате <code>#RRGGBB</code>. То же для <code>lid</code> и <code>lash</code></td></tr>
+        <tr><td>неизвестный кадр "smile"</td><td>В <code>frames</code> имя не из списка: closed, happy, love, dizzy, angry, sad, ouch, surprised</td></tr>
+        <tr><td>layout.eyes пустой</td><td>В <code>eyes</code> нет ни одного глаза-объекта</td></tr>
+        <tr><td>глаза не помещаются в 128x64 пикселя</td><td>Раскладка вылезла за предел: уменьшите отступы, <code>scale</code> или сам глаз</td></tr>
+        <tr><td>формат 2 новее этой версии плагина</td><td>Глаза сделаны для новой версии, обновите плагин</td></tr>
+        <tr><td>ожидался объект { ... }</td><td>Файл не начинается с <code>{</code></td></tr>
+      </table></div>
+      <h3>Ошибки при добавлении</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Сообщение</th><th>Что делать</th></tr>
+        <tr><td>Это не глаза: Expecting ..., Extra data, Invalid control character</td><td>Ошибка в самом JSON: запятая, кавычка, комментарий. Вставьте текст в <a href="editor.html">онлайн-редактор</a> (кнопка "Вставить JSON"), он покажет строку и что не так по-русски</td></tr>
+        <tr><td>не похоже на JSON с глазами</td><td>В тексте нет фигурных скобок</td></tr>
+        <tr><td>Сначала скачайте файл, потом добавляйте</td><td>Нажмите на файл в чате, дождитесь загрузки и снова "Добавить глаза"</td></tr>
+        <tr><td>Файл слишком большой для глаз</td><td>Файл больше 300 КБ, это точно не глаза</td></tr>
+        <tr><td>Буфер обмена пуст</td><td>Сначала скопируйте JSON</td></tr>
+        <tr><td>Каталог недоступен</td><td>Нет интернета или GitHub недоступен. Плагин пробует и зеркало, попробуйте позже</td></tr>
+        <tr><td>Отметьте хотя бы один цвет глаза как яблоко</td><td>В редакторе плагина выберите цвет яблока на слое "Глаз" и нажмите 👁</td></tr>
+      </table></div>
+    </section>
+
+    <section id="faq">
+      <h2>Вопросы</h2>
+      <h3>Можно сделать анимированные глаза?</h3>
+      <p>Анимацию делает сам плагин: взгляд, моргание, эмоции, частицы. Ваши картинки и кадры неподвижные, но плагин оживляет их одинаково для любых глаз.</p>
+      <h3>Можно сделать разные левый и правый глаз?</h3>
+      <p>Картинка глаза одна. Правый глаз бывает отражённым или таким же, а в раскладке <code>eyes</code> ещё и другого размера.</p>
+      <h3>Глаза мешают нажимать на кнопки</h3>
+      <p>Касания по прозрачным пикселям проходят насквозь. Глаза можно перетащить, сделать полупрозрачными или показывать только в чатах или только пока печатаете.</p>
+      <h3>Глаза видят собеседники?</h3>
+      <p>Нет. Всё рисуется только у вас на экране, ничего никуда не отправляется.</p>
+      <h3>Сколько тратят батареи?</h3>
+      <p>В покое глаза перерисовываются примерно раз в секунду, во сне редко, а когда приложение свёрнуто, не рисуются совсем.</p>
+      <h3>Где посмотреть, как сделаны встроенные?</h3>
+      <p>Все встроенные лежат в <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/builtin">builtin/</a>, глаза каталога в <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/skins">skins/</a>. Любые открываются в <a href="editor.html">редакторе</a> кнопкой "Изменить" в <a href="./#eyes">галерее</a>.</p>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pixel Eyes. Плагин и глаза: <a href="https://t.me/van1lLove">@van1lLove</a></span>
+    <span><a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a> · <a href="editor.html">Редактор</a></span>
+  </div>
+</footer>
+</body>
+</html>

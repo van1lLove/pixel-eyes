@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Редактор глаз</title>
+<meta name="description" content="Онлайн-редактор глаз для плагина Pixel Eyes: рисуйте пиксели, смотрите живой пример, отправляйте файл в Telegram.">
+<meta property="og:title" content="Редактор глаз Pixel Eyes">
+<meta property="og:description" content="Нарисуйте свои пиксельные глаза для exteraGram и AyuGram прямо в браузере.">
+<meta property="og:image" content="https://vladislavpolunin92-ux.github.io/pixel-eyes/previews/builtin.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1b22' d='M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z'/%3E%3Cpath fill='%23fff' d='M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z'/%3E%3Cpath fill='%2315151c' d='M3 3h2v2H3z'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('pe-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Tiny5&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/eyes.js" defer></script>
+<script src="assets/site.js" defer></script>
+<script src="assets/editor.js" defer></script>
+</head>
+<body data-page="editor">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><canvas id="logo-eyes" aria-hidden="true"></canvas>Pixel Eyes</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Меню" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="./#download">Скачать</a>
+      <a href="./#eyes">Глаза</a>
+      <a href="guide.html">Инструкция</a>
+      <a href="editor.html" aria-current="page">Редактор</a>
+      <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a>
+      <button class="icon-btn" id="theme-btn" type="button" title="Тема">🌗</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap editor">
+  <div class="ed-head">
+    <h1>Редактор глаз</h1>
+    <p class="muted">Рисуйте пиксели, справа сразу живые глаза. Черновик сохраняется в браузере сам. Как всё устроено, подробно в <a href="guide.html">инструкции</a>.</p>
+  </div>
+
+  <div class="card ed-bar">
+    <label class="fld grow"><span>Название</span><input id="ed-name" type="text" maxlength="40" autocomplete="off"></label>
+    <label class="fld"><span>Взять за основу</span>
+      <select id="ed-template"><option value="">Выбрать глаза...</option></select></label>
+    <div class="ed-bar-btns">
+      <button class="btn small alt" id="ed-new" type="button">Новые</button>
+      <button class="btn small alt" id="ed-paste" type="button">Вставить JSON</button>
+      <label class="btn small alt file-btn">Открыть файл<input id="ed-file" type="file" accept=".json,.eyes,application/json,text/plain"></label>
+    </div>
+    <div id="ed-paste-box" class="paste-box" hidden>
+      <textarea id="ed-paste-text" rows="8" spellcheck="false" placeholder="Вставьте JSON глаз: из сообщения, из буфера, из файла. Лишний текст вокруг фигурных скобок не мешает"></textarea>
+      <div class="row-btns"><button class="btn small" id="ed-paste-apply" type="button">Открыть</button><span id="ed-paste-err" class="err"></span></div>
+    </div>
+  </div>
+
+  <div class="ed-grid">
+    <div class="ed-main">
+      <div class="card ed-paint">
+        <div class="chips" id="ed-layers"></div>
+        <p class="muted small" id="ed-layer-hint"></p>
+        <div class="chips" id="ed-tools"></div>
+        <div class="ed-ops">
+          <span class="op-group" title="Размер слоя">
+            <button class="icon-btn" id="ed-w-" type="button" title="Уже">Ш−</button>
+            <button class="icon-btn" id="ed-w+" type="button" title="Шире">Ш+</button>
+            <span id="ed-size" class="size">10 × 8</span>
+            <button class="icon-btn" id="ed-h-" type="button" title="Ниже">В−</button>
+            <button class="icon-btn" id="ed-h+" type="button" title="Выше">В+</button>
+          </span>
+          <span class="op-group" title="Сдвинуть рисунок">
+            <button class="icon-btn" id="ed-left" type="button" title="Сдвинуть влево">←</button>
+            <button class="icon-btn" id="ed-up" type="button" title="Сдвинуть вверх">↑</button>
+            <button class="icon-btn" id="ed-down" type="button" title="Сдвинуть вниз">↓</button>
+            <button class="icon-btn" id="ed-right" type="button" title="Сдвинуть вправо">→</button>
+          </span>
+          <span class="op-group">
+            <button class="icon-btn" id="ed-flip" type="button" title="Отразить по горизонтали">⇋</button>
+            <button class="icon-btn" id="ed-undo" type="button" title="Отменить (Ctrl+Z)">↶</button>
+            <button class="icon-btn" id="ed-redo" type="button" title="Повторить (Ctrl+Y)">↷</button>
+            <button class="icon-btn" id="ed-clear" type="button" title="Стереть слой">🗑</button>
+          </span>
+        </div>
+        <div id="ed-canvas-holder" class="canvas-holder">
+          <canvas id="ed-canvas" aria-label="Сетка пикселей"></canvas>
+          <div id="ed-empty" class="empty" style="display:none">
+            <p id="ed-empty-text"></p>
+            <button class="btn small purple" id="ed-create" type="button">Создать</button>
+          </div>
+        </div>
+        <div class="ed-under">
+          <label class="chk"><input id="ed-show-sclera" type="checkbox" checked><span>Точки на клетках яблока</span></label>
+          <button class="btn small alt" id="ed-remove" type="button" style="display:none">Убрать слой</button>
+        </div>
+
+        <h3>Палитра</h3>
+        <div id="ed-palette" class="palette"></div>
+        <div id="ed-color" class="color-box">
+          <div class="color-row">
+            <input id="ed-color-input" type="color" aria-label="Цвет">
+            <label class="fld"><span>Код</span><input id="ed-hex" type="text" spellcheck="false" autocomplete="off"></label>
+            <label class="fld narrow"><span>Символ</span><input id="ed-char" type="text" maxlength="2" spellcheck="false" autocomplete="off"></label>
+          </div>
+          <label class="fld"><span>Непрозрачность <output id="ed-alpha-val">100%</output></span><input id="ed-alpha" type="range" min="0" max="255" step="1"></label>
+          <div class="color-row">
+            <label class="chk"><input id="ed-is-sclera" type="checkbox"><span>👁 Яблоко: по нему ходит радужка</span></label>
+            <label class="chk"><input id="ed-is-pupil" type="checkbox"><span>⚫ Зрачок</span></label>
+            <button class="btn small alt" id="ed-del-color" type="button">Удалить цвет</button>
+          </div>
+          <div class="presets" id="ed-presets" aria-label="Быстрые цвета"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-side">
+      <div class="card ed-preview">
+        <div class="stage" id="ed-stage"></div>
+        <div class="chips" id="ed-emos"></div>
+        <div class="ed-preview-row">
+          <div class="chips" id="ed-bg">
+            <button class="chip" type="button" data-v="dark">Тёмная</button>
+            <button class="chip" type="button" data-v="light">Светлая</button>
+            <button class="chip" type="button" data-v="chat-dark">Чат</button>
+            <button class="chip" type="button" data-v="chat-light">Чат светлый</button>
+          </div>
+          <label class="rng" title="Размер примера"><span class="muted small">Размер</span><input id="ed-unit" type="range" min="3" max="12" value="10"></label>
+        </div>
+        <p class="muted small">Поводите курсором или пальцем. Тап по глазам: "ай", три тапа: злость, зажать: сон.</p>
+      </div>
+
+      <div id="ed-status"></div>
+
+      <details class="card ed-sect" open>
+        <summary>Радужка, блик, веки</summary>
+        <div id="ed-eye-opts" class="sect-body"></div>
+      </details>
+      <details class="card ed-sect">
+        <summary>Сколько глаз и где</summary>
+        <div id="ed-layout-opts" class="sect-body"></div>
+      </details>
+      <details class="card ed-sect">
+        <summary>Характер</summary>
+        <div id="ed-beh-opts" class="sect-body"></div>
+      </details>
+      <details class="card ed-sect">
+        <summary>id, автор, описание</summary>
+        <div id="ed-meta" class="sect-body"></div>
+      </details>
+
+      <div class="card ed-out">
+        <div class="row-btns">
+          <button class="btn small" id="ed-share" type="button">Отправить файлом</button>
+          <button class="btn small alt" id="ed-copy" type="button">Скопировать JSON</button>
+          <button class="btn small alt" id="ed-download" type="button">Скачать .json</button>
+        </div>
+        <p class="muted small">Как добавить в плагин: отправьте файл или текст себе в Избранное, зажмите сообщение, "Добавить глаза". Или скопируйте и в плагине нажмите "Из буфера обмена".</p>
+        <textarea id="ed-json" rows="14" readonly spellcheck="false" aria-label="JSON глаз"></textarea>
+        <div class="row-btns">
+          <button class="btn small alt" id="ed-edit-json" type="button">Править JSON</button>
+          <button class="btn small" id="ed-apply-json" type="button" style="display:none">Применить</button>
+          <span id="ed-json-size" class="muted small"></span>
+        </div>
+        <div id="ed-json-err" class="err"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pixel Eyes. Плагин и глаза: <a href="https://t.me/van1lLove">@van1lLove</a></span>
+    <span>Клавиши: <kbd>B</kbd> кисть, <kbd>E</kbd> ластик, <kbd>F</kbd> заливка, <kbd>I</kbd> пипетка, <kbd>M</kbd> зеркало, <kbd>Ctrl</kbd>+<kbd>Z</kbd> отмена</span>
+  </div>
+</footer>
+</body>
+</html>

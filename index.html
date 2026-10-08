@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pixel Eyes</title>
+<meta name="description" content="Плагин для exteraGram и AyuGram: пиксельные глаза поверх Telegram, которые следят за пальцем, засыпают, злятся и влюбляются. Свои глаза рисуются в редакторе.">
+<meta property="og:title" content="Pixel Eyes: глаза поверх Telegram">
+<meta property="og:description" content="Плагин для exteraGram и AyuGram. 14 наборов глаз, каталог, редактор своих.">
+<meta property="og:image" content="https://vladislavpolunin92-ux.github.io/pixel-eyes/previews/builtin.png">
+<meta name="theme-color" content="#121019">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1b22' d='M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z'/%3E%3Cpath fill='%23fff' d='M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z'/%3E%3Cpath fill='%2315151c' d='M3 3h2v2H3z'/%3E%3C/svg%3E">
+<script>try{var t=localStorage.getItem('pe-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Tiny5&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/eyes.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body data-page="home">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><canvas id="logo-eyes" aria-hidden="true"></canvas>Pixel Eyes</a>
+    <button class="icon-btn menu-btn" type="button" aria-label="Меню" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="#download">Скачать</a>
+      <a href="#eyes">Глаза</a>
+      <a href="guide.html">Инструкция</a>
+      <a href="editor.html">Редактор</a>
+      <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a>
+      <button class="icon-btn" id="float-btn" type="button" title="Глаза поверх страницы, как в плагине">👀</button>
+      <button class="icon-btn" id="theme-btn" type="button" title="Тема">🌗</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="stage" id="hero-stage">
+        <div class="stage-hint">Водите мышкой или пальцем. Ткните в глаза</div>
+      </div>
+      <div class="chips" id="hero-skins"></div>
+      <h1>Глаза, которые следят за&nbsp;вами в&nbsp;Telegram</h1>
+      <p class="lead">Плагин для exteraGram и AyuGram. Пиксельные глаза живут поверх приложения: смотрят на палец и на курсор, засыпают без дела, злятся, если в них тыкать, и влюбляются от сердечек. 14 наборов внутри, ещё больше в каталоге, а свои рисуются прямо в настройках.</p>
+      <div class="typing-demo">
+        <label class="sr-only" for="type-demo">Попробуйте напечатать</label>
+        <input id="type-demo" type="text" autocomplete="off" placeholder="Напечатайте что-нибудь и замрите">
+        <button class="btn" id="type-send" type="button" aria-label="Отправить">➤</button>
+      </div>
+      <div class="hero-actions">
+        <a class="btn" data-download href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases/latest/download/pixel_eyes.plugin">⬇️ Скачать плагин</a>
+        <a class="btn alt" href="editor.html">✏️ Нарисовать свои</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <h2>Как поставить</h2>
+      <ol class="steps">
+        <li class="card"><b>Скачайте файл</b>
+          <a data-download href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases/latest/download/pixel_eyes.plugin">pixel_eyes.plugin</a>, 218 КБ. Это и есть весь плагин.</li>
+        <li class="card"><b>Отправьте его себе</b>
+          В Избранное или в любой чат: "Поделиться" из загрузок браузера, либо скрепка в чате, "Файл", папка "Загрузки".</li>
+        <li class="card"><b>Нажмите на файл в чате</b>
+          exteraGram или AyuGram откроет окно установки плагина. Нажмите "Установить".</li>
+        <li class="card"><b>Готово</b>
+          Глаза сразу появятся поверх приложения. Настройки: "Настройки", раздел плагинов, Pixel Eyes, шестерёнка.</li>
+      </ol>
+      <p class="muted" style="margin-top:16px">Нужен клиент с плагинами: exteraGram 12.5.1 и новее или AyuGram с поддержкой плагинов. В обычном Telegram плагинов нет. Всё работает только у вас на телефоне: собеседники глаз не видят, на сервер ничего не уходит.</p>
+    </div>
+  </section>
+
+  <section id="what" style="background:var(--bg2)">
+    <div class="wrap">
+      <h2>Что они умеют</h2>
+      <p class="lead">Нажмите на карточку, и глаза наверху покажут, как это выглядит в Telegram. Скопируйте любой текст на странице: глаза подмигнут, как в плагине.</p>
+      <div class="grid3">
+        <button class="card react" type="button" data-event="incoming"><span class="emo">📩</span><div><b>Новое сообщение</b><span>Оглядываются на пришедшее и удивляются</span></div></button>
+        <button class="card react" type="button" data-event="send"><span class="emo">📤</span><div><b>Отправка</b><span>Радуются, глаза закрываются дугой</span></div></button>
+        <button class="card react" type="button" data-event="love"><span class="emo">❤️</span><div><b>Сердечки</b><span>Влюбляются от сердечек и "люблю": зрачки сердцем</span></div></button>
+        <button class="card react" type="button" data-event="deleted"><span class="emo">🗑</span><div><b>Удалили сообщение</b><span>Грустят и плачут</span></div></button>
+        <button class="card react" type="button" data-event="peer_typing"><span class="emo">💬</span><div><b>Собеседник печатает</b><span>С интересом смотрят на шапку чата</span></div></button>
+        <button class="card react" type="button" data-event="emo:stare"><span class="emo">👀</span><div><b>Смотрят на вас</b><span>Перестали печатать: глаза поднимаются прямо на вас</span></div></button>
+        <button class="card react" type="button" data-event="shake"><span class="emo">📳</span><div><b>Тряска телефона</b><span>Кружится голова, зрачки спиралью</span></div></button>
+        <button class="card react" type="button" data-event="copy"><span class="emo">📋</span><div><b>Копирование</b><span>Подмигивают</span></div></button>
+        <button class="card react" type="button" data-event="poke"><span class="emo">👉</span><div><b>Тап по глазам</b><span>"Ай!", глаза зажмуриваются ><</span></div></button>
+        <button class="card react" type="button" data-event="poke3"><span class="emo">😠</span><div><b>Три тапа подряд</b><span>Злятся: веки наискосок, над глазами знак злости</span></div></button>
+        <button class="card react" type="button" data-event="emo:suspicious"><span class="emo">🤨</span><div><b>Стёрли много текста</b><span>Подозрительно щурятся</span></div></button>
+        <button class="card react" type="button" data-event="emo:asleep"><span class="emo">😴</span><div><b>Без дела</b><span>Клюют носом и засыпают с Z. Ночью сонные, от разряда уставшие</span></div></button>
+      </div>
+      <h3>Жесты</h3>
+      <div class="table-wrap"><table>
+        <tr><th>Что сделать</th><th>Что будет</th></tr>
+        <tr><td>Тап по глазам</td><td>"Ай", глаза зажмуриваются</td></tr>
+        <tr><td>Три тапа за пару секунд</td><td>Злятся</td></tr>
+        <tr><td>Зажать и тащить</td><td>Глаза переезжают в новое место, оно запоминается. Отпустили: кружится голова</td></tr>
+        <tr><td>Зажать и отпустить</td><td>Уснуть или проснуться</td></tr>
+        <tr><td>Тап мимо глаз, по прозрачному</td><td>Проходит насквозь в приложение, глаза не мешают нажимать</td></tr>
+      </table></div>
+      <p class="muted">Попробуйте с глазами в углу этой страницы: они ведут себя так же, как в плагине. Спрятать или вернуть их можно кнопкой 👀 в шапке.</p>
+    </div>
+  </section>
+
+  <section id="settings">
+    <div class="wrap">
+      <h2>Настройки</h2>
+      <div class="grid2">
+        <div class="card" style="padding:18px">
+          <h3 style="margin-top:0">Вид</h3>
+          <ul>
+            <li><b>Выбрать глаза</b>: галерея, где все наборы живые и следят за пальцем</li>
+            <li><b>Размер</b>: от крошечных до огромных, 5 ступеней</li>
+            <li><b>Непрозрачность</b>: 100, 85, 70 или 50%</li>
+            <li><b>Где показывать</b>: везде, только в чатах или только пока печатаете</li>
+            <li><b>Обводка</b>: тень на светлой теме, светлый контур на тёмной, или без неё</li>
+            <li><b>Вернуть глаза на место</b>, если утащили за край</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="margin-top:0">Реакции и сон</h3>
+          <ul>
+            <li>Каждую реакцию можно выключить отдельно: палец, набор, взгляд на вас, сообщения, отправка, сердечки, "печатает", переходы, тряска, копирование, тапы</li>
+            <li><b>Засыпать без дела</b> через заданное число секунд (по умолчанию 90)</li>
+            <li><b>Сонные ночью</b>: с полуночи до шести засыпают вдвое быстрее</li>
+            <li><b>Устают от разряда</b>: меньше 15% без зарядки</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:16px">Батарею глаза почти не тратят: в покое перерисовываются примерно раз в секунду, а когда приложение свёрнуто, не рисуются совсем.</p>
+    </div>
+  </section>
+
+  <section id="eyes" style="background:var(--bg2)">
+    <div class="wrap">
+      <h2>Все глаза</h2>
+      <p class="lead">Встроенные уже есть в плагине. Глаза из каталога добавляются в плагине одним нажатием: "Свои глаза и каталог", "Каталог глаз". Любые можно скопировать, скачать файлом или открыть в редакторе и переделать под себя. Кнопка 👀 сажает глаза поверх этой страницы.</p>
+      <div class="chips filter" id="gallery-filter"></div>
+      <div class="gallery" id="gallery"><p class="muted">Загружаю глаза...</p></div>
+    </div>
+  </section>
+
+  <section id="make">
+    <div class="wrap">
+      <h2>Свои глаза</h2>
+      <div class="grid3">
+        <div class="card" style="padding:18px">
+          <h3 style="margin-top:0">📱 В плагине</h3>
+          <p>"Свои глаза и каталог", "Нарисовать новые". Рисуете пальцем глаз, радужку и блик, сверху живой пример. Встроенные можно открыть копией и переделать.</p>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="margin-top:0">🖥 Онлайн-редактор</h3>
+          <p>Всё то же плюс свои кадры эмоций, много глаз в любом порядке, тонкий характер, проверка ошибок и отправка файлом прямо в Telegram.</p>
+          <a class="btn small purple" href="editor.html">Открыть редактор</a>
+        </div>
+        <div class="card" style="padding:18px">
+          <h3 style="margin-top:0">📖 Инструкция</h3>
+          <p>Подробно про каждое поле файла, урок с нуля, эмоции, советы по пиксель-арту, ошибки и как попасть в каталог.</p>
+          <a class="btn small alt" href="guide.html">Читать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pixel Eyes. Плагин и глаза: <a href="https://t.me/van1lLove">@van1lLove</a></span>
+    <span><a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">Исходники каталога на GitHub</a> · <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases">Версии плагина</a></span>
+  </div>
+</footer>
+</body>
+</html>
