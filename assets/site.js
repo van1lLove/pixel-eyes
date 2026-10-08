@@ -494,7 +494,7 @@
       if (text) {
         hint.innerHTML = m === 'none'
           ? (sending ? 'Обычное сообщение: глаза ' + WHAT[ev] + '.'
-            : 'Пока ничего особенного. Попробуйте "люблю", "ахаха", "мне грустно" или гадость.')
+            : 'Пока ничего особенного. Попробуйте "люблю", "ахаха", "мне грустно" или "ты дебил".')
           : 'Глаза поняли: <b>' + MOOD_NAMES[m] + '</b>. ' + (dir === 'in' ? 'Пишут вам' : 'Пишете вы') +
             ', поэтому глаза ' + WHAT[ev] + '.';
       }
@@ -523,6 +523,15 @@
       moodTimer = setTimeout(function () {
         reactTo(input.value.trim(), false);
       }, 450);
+    });
+    document.querySelectorAll('#type-say [data-say]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        clearTimeout(moodTimer);
+        input.value = b.getAttribute('data-say');
+        last = input.value;
+        shown = '';
+        reactTo(input.value, false);
+      });
     });
     document.querySelectorAll('#type-dir [data-dir]').forEach(function (b) {
       b.addEventListener('click', function () {
