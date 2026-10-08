@@ -905,15 +905,6 @@ footer .wrap {
   margin: 0 0 10px;
 }
 
-.chat-demo .chips.say {
-  margin: 10px 0 0;
-}
-
-.chat-demo .say .chip {
-  font-size: 13.5px;
-  padding: 5px 11px;
-}
-
 .type-hint {
   font-size: 14.5px;
   color: var(--muted);

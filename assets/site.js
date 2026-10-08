@@ -524,15 +524,6 @@
         reactTo(input.value.trim(), false);
       }, 450);
     });
-    document.querySelectorAll('#type-say [data-say]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        clearTimeout(moodTimer);
-        input.value = b.getAttribute('data-say');
-        last = input.value;
-        shown = '';
-        reactTo(input.value, false);
-      });
-    });
     document.querySelectorAll('#type-dir [data-dir]').forEach(function (b) {
       b.addEventListener('click', function () {
         dir = b.getAttribute('data-dir');
