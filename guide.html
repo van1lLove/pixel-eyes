@@ -7,7 +7,7 @@
 <meta name="description" content="Подробная инструкция Pixel Eyes: как нарисовать свои пиксельные глаза, каждое поле файла, эмоции, свои кадры, ошибки, каталог.">
 <meta property="og:title" content="Как сделать свои глаза для Pixel Eyes">
 <meta property="og:description" content="От первого пикселя до каталога: урок с живыми примерами, справочник полей, советы по пиксель-арту.">
-<meta property="og:image" content="https://vladislavpolunin92-ux.github.io/pixel-eyes/previews/catalog.png">
+<meta property="og:image" content="https://van1llove.github.io/pixel-eyes/previews/catalog.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1b22' d='M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z'/%3E%3Cpath fill='%23fff' d='M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z'/%3E%3Cpath fill='%2315151c' d='M3 3h2v2H3z'/%3E%3C/svg%3E">
 <script>try{var t=localStorage.getItem('pe-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
       <a href="./#eyes">Глаза</a>
       <a href="guide.html" aria-current="page">Инструкция</a>
       <a href="editor.html">Редактор</a>
-      <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a>
+      <a href="https://github.com/van1lLove/pixel-eyes">GitHub</a>
       <button class="icon-btn" id="float-btn" type="button" title="Глаза поверх страницы, как в плагине">👀</button>
       <button class="icon-btn" id="theme-btn" type="button" title="Тема">🌗</button>
     </nav>
@@ -371,6 +371,7 @@
       <a href="#highlight">Блик</a>
       <a href="#lids">Веки и моргание</a>
       <a href="#emotions">Эмоции</a>
+      <a class="sub" href="#text-moods">Как понимают текст</a>
       <a href="#frames">Свои кадры</a>
       <a href="#layout">Сколько глаз и где</a>
       <a href="#behavior">Характер</a>
@@ -604,11 +605,12 @@
       <div class="emo-grid" data-emo-grid="ex-step5"></div>
       <div class="table-wrap"><table>
         <tr><th>Эмоция</th><th>Когда</th><th>Что рисует плагин</th><th>Свой кадр</th></tr>
-        <tr><td>Радость</td><td>Отправили сообщение</td><td>Глаза закрыты улыбкой "∩"</td><td><code>happy</code></td></tr>
-        <tr><td>Влюблённость</td><td>Сердечки или "люблю" в переписке</td><td>Зрачки сердцем, нижнее веко чуть выше, летят сердечки</td><td><code>love</code></td></tr>
+        <tr><td>Радость</td><td>Отправили сообщение, смешное сообщение ("ахаха", 😂)</td><td>Глаза закрыты улыбкой "∩"</td><td><code>happy</code></td></tr>
+        <tr><td>Влюблённость</td><td>Сердечки и слова о любви, ваши или собеседника</td><td>Зрачки сердцем, нижнее веко чуть выше, летят сердечки</td><td><code>love</code></td></tr>
+        <tr><td>Испуг</td><td>Вам пишут гадости, потом сразу грусть</td><td>Широко открыты, крошечные зрачки, дрожат, "!"</td><td>нет</td></tr>
         <tr><td>Удивление</td><td>Новое сообщение в открытом чате, проснулись от касания</td><td>Широко открыты, зрачок узкий, "!"</td><td><code>surprised</code></td></tr>
-        <tr><td>Злость</td><td>Три тапа подряд</td><td>Веки наискосок, прищур, знак злости</td><td><code>angry</code></td></tr>
-        <tr><td>Грусть</td><td>Удалили сообщение</td><td>Веки домиком, капают слёзы</td><td><code>sad</code></td></tr>
+        <tr><td>Злость</td><td>Три тапа подряд, вы грубите в сообщении</td><td>Веки наискосок, прищур, знак злости</td><td><code>angry</code></td></tr>
+        <tr><td>Грусть</td><td>Удалили сообщение, грустное сообщение, после испуга от гадостей</td><td>Веки домиком, капают слёзы</td><td><code>sad</code></td></tr>
         <tr><td>Головокружение</td><td>Тряска, отпустили после перетаскивания</td><td>Зрачки спиралью, звёздочки</td><td><code>dizzy</code></td></tr>
         <tr><td>Ай</td><td>Тап по глазам</td><td>Зажмурены ><, капля</td><td><code>ouch</code></td></tr>
         <tr><td>Сон</td><td>Долго без дела, зажать и отпустить</td><td>Закрыты дугой "‿", летят Z</td><td><code>closed</code></td></tr>
@@ -616,10 +618,31 @@
         <tr><td>Подозрение</td><td>Стёрли больше 12 символов подряд</td><td>Прищур</td><td>нет</td></tr>
         <tr><td>Взгляд на вас</td><td>Перестали печатать (через 1.3 секунды)</td><td>Смотрят прямо, зрачок шире. Жуткие смотрят 6 секунд и не моргают</td><td>нет</td></tr>
         <tr><td>Сосредоточенность</td><td>Печатаете</td><td>Чуть прищурены, бегают за курсором</td><td>нет</td></tr>
-        <tr><td>Любопытство</td><td>Собеседник печатает</td><td>Смотрят на шапку чата, "?"</td><td>нет</td></tr>
+        <tr><td>Любопытство</td><td>Кто-то печатает</td><td>В чате смотрят на шапку, в списке чатов на строку "печатает...", "?"</td><td>нет</td></tr>
         <tr><td>Клюют носом</td><td>Без дела дольше, чем "Засыпать через"</td><td>Веки на треть, моргают медленно</td><td>нет</td></tr>
       </table></div>
       <p>Ещё глаза сами по себе оглядываются при переходе между экранами, смотрят на новое сообщение, а ночью и при разряженной батарее открыты меньше.</p>
+      <h3 id="text-moods">Как глаза понимают текст</h3>
+      <p>Плагин читает текст ваших сообщений и сообщений в открытом чате (только у вас на телефоне, никуда не отправляя) и ищет в нём слова и эмодзи:</p>
+      <ul>
+        <li><b>Гадости</b>: ругательства в чей-то адрес ("ты дебил", "иди нахуй", "заткнись", "он мразь", 🤬). Обычный мат как междометие ("бля", "пиздец", "сука, опять дождь") не считается. Мягкие слова вроде "дурак" считаются, только если обращены к кому-то: "ты дурак". С "не" перед словом не считается: "ты не дурак".</li>
+        <li><b>Любовь</b>: "люблю", "скучаю", "любимый", "целую", сердечки, 😍. "Не люблю" это уже грусть.</li>
+        <li><b>Смех</b>: "ахаха", "хаха", "лол", "ору", 😂, 🤣, 💀.</li>
+        <li><b>Грусть</b>: "грустно", "обидно", "мне плохо", 😢, 💔.</li>
+      </ul>
+      <p>Если в сообщении несколько настроений, побеждают гадости, потом любовь, грусть и смех. Хитрое написание тоже ловится: "дееебил", латинские буквы внутри русского слова. Попробуйте сами:</p>
+      <div class="card" style="padding:14px;margin-bottom:18px" id="mood-try">
+        <div class="typing-demo" style="margin:0 0 10px;max-width:none">
+          <label class="sr-only" for="mood-input">Текст сообщения</label>
+          <input id="mood-input" type="text" autocomplete="off" placeholder="Напишите сообщение">
+        </div>
+        <div class="chips" style="margin-bottom:10px">
+          <button class="chip on" type="button" data-dir="in">Пишут вам</button>
+          <button class="chip" type="button" data-dir="out">Пишете вы</button>
+        </div>
+        <div class="stage" id="mood-stage" style="min-height:140px"></div>
+        <p class="muted" id="mood-out" style="margin:10px 0 0">Настроение появится здесь.</p>
+      </div>
     </section>
 
     <section id="frames">
@@ -792,12 +815,12 @@
 
     <section id="catalog">
       <h2>Как попасть в каталог</h2>
-      <p>Каталог это этот репозиторий: плагин читает список <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/blob/main/index.json"><code>index.json</code></a> и файлы из папки <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/skins"><code>skins/</code></a>. Глаза в каталоге видят все, у кого стоит плагин.</p>
+      <p>Каталог это этот репозиторий: плагин читает список <a href="https://github.com/van1lLove/pixel-eyes/blob/main/index.json"><code>index.json</code></a> и файлы из папки <a href="https://github.com/van1lLove/pixel-eyes/tree/main/skins"><code>skins/</code></a>. Глаза в каталоге видят все, у кого стоит плагин.</p>
       <h3>Просто</h3>
       <p>Пришлите файл <a href="https://t.me/van1lLove">@van1lLove</a> в Telegram.</p>
       <h3>Через GitHub</h3>
       <ol>
-        <li>Войдите на GitHub и откройте <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">репозиторий</a>. Нажмите <b>Fork</b>: у вас появится своя копия.</li>
+        <li>Войдите на GitHub и откройте <a href="https://github.com/van1lLove/pixel-eyes">репозиторий</a>. Нажмите <b>Fork</b>: у вас появится своя копия.</li>
         <li>В своей копии откройте папку <code>skins</code>, <b>Add file</b>, <b>Create new file</b>. Имя файла: ваш <code>id</code> и <code>.json</code>, например <code>blue_buttons.json</code>. Вставьте JSON, <b>Commit changes</b>.</li>
         <li>Откройте <code>index.json</code>, карандаш, и добавьте запись в список <code>skins</code> (не забудьте запятую после предыдущей записи):
 <pre><code>{"id": "blue_buttons", "name": "Синие пуговки", "author": "@you",
@@ -863,7 +886,7 @@
       <h3>Сколько тратят батареи?</h3>
       <p>В покое глаза перерисовываются примерно раз в секунду, во сне редко, а когда приложение свёрнуто, не рисуются совсем.</p>
       <h3>Где посмотреть, как сделаны встроенные?</h3>
-      <p>Все встроенные лежат в <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/builtin">builtin/</a>, глаза каталога в <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/tree/main/skins">skins/</a>. Любые открываются в <a href="editor.html">редакторе</a> кнопкой "Изменить" в <a href="./#eyes">галерее</a>.</p>
+      <p>Все встроенные лежат в <a href="https://github.com/van1lLove/pixel-eyes/tree/main/builtin">builtin/</a>, глаза каталога в <a href="https://github.com/van1lLove/pixel-eyes/tree/main/skins">skins/</a>. Любые открываются в <a href="editor.html">редакторе</a> кнопкой "Изменить" в <a href="./#eyes">галерее</a>.</p>
     </section>
   </article>
 </main>
@@ -871,7 +894,7 @@
 <footer>
   <div class="wrap">
     <span>Pixel Eyes. Плагин и глаза: <a href="https://t.me/van1lLove">@van1lLove</a></span>
-    <span><a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a> · <a href="editor.html">Редактор</a></span>
+    <span><a href="https://github.com/van1lLove/pixel-eyes">GitHub</a> · <a href="editor.html">Редактор</a></span>
   </div>
 </footer>
 </body>

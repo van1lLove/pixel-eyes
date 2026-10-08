@@ -798,6 +798,168 @@
     s.creepy = bool(b.creepy, false);
   }
 
+  // ---- настроение текста ------------------------------------------------------
+  // Копия Mood.java: оскорбление, любовь, смех, грусть. Правки делать в обоих местах.
+
+  var MOOD_NAMES = ['none', 'love', 'insult', 'laugh', 'sad'];
+  var STRONG_STEMS = ['дебил', 'идиот', 'долбоеб', 'долбаеб', 'далбаеб', 'долбоящер', 'еблан', 'ебанат', 'ебанько',
+    'ебанут', 'мудак', 'мудил', 'мудозвон', 'мудло', 'урод', 'уебок', 'уебан', 'уебищ', 'ублюд', 'тварь', 'твари',
+    'гнид', 'мразь', 'мрази', 'мразот', 'чмош', 'чмыр', 'пидор', 'пидр', 'пидар', 'гандон', 'гондон', 'шлюх',
+    'шалав', 'сучк', 'сученыш', 'дегенерат', 'кретин', 'имбецил', 'олигофрен', 'ничтожеств', 'падл', 'паскуд',
+    'сволоч', 'скотин', 'выродок', 'выблядок', 'хуесос', 'хуила', 'хуйло', 'говнюк', 'говноед', 'лошар', 'придурк',
+    'придурок', 'тупорыл', 'тупиц', 'петушар', 'чепушил', 'пиздабол', 'пиздюк', 'залупа', 'конченн'];
+  var STRONG_WORDS = ['чмо', 'даун', 'дауна', 'дауну', 'дауном', 'дауны', 'даунов', 'педик', 'педика', 'педики',
+    'педиков', 'отброс', 'отбросы', 'отбросов', 'конченый', 'конченая', 'конченые', 'конченого', 'конченой', 'мудень',
+    'ебанашка', 'сучка'];
+  var MILD_WORDS = ['дурак', 'дура', 'дураки', 'дурачок', 'дурочка', 'глупый', 'глупая', 'глупые', 'тупой', 'тупая',
+    'тупое', 'тупые', 'лох', 'лоха', 'лохи', 'лошок', 'лохушка', 'клоун', 'клоуны', 'нуб', 'лузер', 'неадекват',
+    'псих', 'психичка', 'аутист', 'аутистка', 'бездарь', 'козел'];
+  var BITCH = ['сука', 'суки', 'сучара'];
+  var BITCH_BEFORE = ['ты', 'вы', 'он', 'она', 'они', 'это', 'такая', 'такой', 'какая', 'тупая', 'тупой'];
+  var BITCH_AFTER = ['ты', 'вы', 'такая', 'такой'];
+  var LINKS = ['и', 'же', 'ещё', 'еще', 'прям', 'реально'];
+  var PRONOUNS = ['ты', 'тебя', 'тебе', 'тобой', 'вы', 'вас', 'вам', 'вами', 'твой', 'твоя', 'твое', 'твои', 'ваш',
+    'ваша', 'он', 'она', 'они', 'его', 'ее', 'их', 'этот', 'эта', 'такой', 'такая'];
+  var RUDE_PHRASES = ['иди нахуй', 'иди на хуй', 'идите нахуй', 'пошел нахуй', 'пошла нахуй', 'пошли нахуй',
+    'пошел на хуй', 'иди нахер', 'пошел нахер', 'иди в жопу', 'пошел в жопу', 'иди в пизду', 'пошел в пизду',
+    'пошел ты', 'пошла ты', 'иди ты', 'катись', 'отъебись', 'отьебись', 'съебись', 'завали ебало', 'завали хлебало',
+    'закрой рот', 'закрой ебало', 'закрой пасть', 'ебало завали', 'заткнись', 'заткнитесь', 'сдохни', 'чтоб ты сдох',
+    'чтоб ты сдохла', 'чтобы ты сдох', 'убью тебя', 'ненавижу', 'ты никто', 'ебал тебя', 'ебал твою', 'мамку твою',
+    'твою мамку', 'мамку ебал', 'иди лесом', 'отвали', 'отстань', 'бесишь', 'ты достал', 'ты достала',
+    'ты меня достал', 'ты меня достала'];
+  var LOVE_PHRASES = ['люблю', 'лю тебя', 'люблб', 'обожаю тебя', 'обожаю вас', 'любимый', 'любимая', 'любимой',
+    'любимому', 'любимка', 'любимочка', 'любовь моя', 'моя любовь', 'скучаю', 'соскучился', 'соскучилась', 'целую',
+    'чмоки', 'чмок', 'обнимаю', 'обнимашки', 'love you', 'lov u', 'ily', 'i love'];
+  var SAD_PHRASES = ['грустно', 'грусть', 'печально', 'печаль', 'тоскливо', 'одиноко', 'плачу', 'мне плохо',
+    'мне хуево', 'мне хреново', 'депрессия', 'обидно', 'не люблю', 'разлюбил', 'разлюбила', 'расстались'];
+  var LAUGH_WORDS = ['лол', 'ору', 'ржу', 'ржака', 'угар', 'орнул', 'lol', 'lmao', 'haha', 'хах', 'хех', 'хехе', 'бгг'];
+  var LOVE_CODES = [0x2764, 0x2665, 0x1F48B, 0x1F48C, 0x1F493, 0x1F495, 0x1F496, 0x1F497, 0x1F498, 0x1F499,
+    0x1F49A, 0x1F49B, 0x1F49C, 0x1F49D, 0x1F49E, 0x1F5A4, 0x1F60D, 0x1F618, 0x1F63B, 0x1F90D, 0x1F90E, 0x1F970,
+    0x1F9E1, 0x1FA75, 0x1FA76, 0x1FA77, 0x1FAF6];
+  var LAUGH_CODES = [0x1F602, 0x1F923, 0x1F606, 0x1F639, 0x1F480];
+  var SAD_CODES = [0x1F622, 0x1F61E, 0x1F614, 0x2639, 0x1F641, 0x1F494, 0x1F63F, 0x1F625];
+  var ANGRY_CODES = [0x1F92C, 0x1F595];
+  var LAT = 'aeopcxykmtb';
+  var CYR = 'аеорсхукмтв';
+
+  function moodNormalize(w) {
+    var cyr = /[а-яё]/.test(w);
+    var b = '';
+    var prev = '';
+    var run = 0;
+    for (var i = 0; i < w.length; i++) {
+      var c = w[i];
+      if (c === 'ё') {
+        c = 'е';
+      }
+      if (cyr) {
+        var k = LAT.indexOf(c);
+        if (k >= 0) {
+          c = CYR[k];
+        }
+      }
+      run = c === prev ? run + 1 : 1;
+      prev = c;
+      if (run === 3) {
+        b = b.slice(0, -1);
+        continue;
+      }
+      if (run > 3) {
+        continue;
+      }
+      b += c;
+    }
+    return b;
+  }
+
+  function moodWords(s) {
+    return (s.toLowerCase().match(/\p{L}+/gu) || []).map(moodNormalize);
+  }
+
+  function hasCode(s, codes) {
+    for (var ch of s) {
+      if (codes.indexOf(ch.codePointAt(0)) >= 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function phrase(joined, list) {
+    return list.some(function (p) {
+      return joined.indexOf(' ' + p + ' ') >= 0;
+    });
+  }
+
+  function isLaugh(w) {
+    var pairs = 0;
+    for (var i = 0; i + 1 < w.length; i++) {
+      var a = w[i];
+      var b = w[i + 1];
+      if ((a === 'а' && (b === 'х' || b === 'з')) || ((a === 'х' || a === 'з') && b === 'а')) {
+        pairs++;
+      } else if (!(a === 'п' && b === 'х') && !(a === 'х' && b === 'п')) {
+        return false;
+      }
+    }
+    return pairs >= 3;
+  }
+
+  /** Настроение текста: 'none', 'love', 'insult', 'laugh', 'sad'. */
+  function mood(text) {
+    if (!text) {
+      return 'none';
+    }
+    var raw = String(text).slice(0, 1000);
+    var words = moodWords(raw);
+    var joined = ' ' + words.join(' ') + ' ';
+    var strong = hasCode(raw, ANGRY_CODES) || phrase(joined, RUDE_PHRASES);
+    var mild = false;
+    var directed = words.length <= 3 || words.some(function (w) {
+      return PRONOUNS.indexOf(w) >= 0;
+    });
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i];
+      if (i > 0 && words[i - 1] === 'не') {
+        continue;
+      }
+      if (BITCH.indexOf(w) >= 0) {
+        var before = (i > 0 && BITCH_BEFORE.indexOf(words[i - 1]) >= 0)
+          || (i > 1 && LINKS.indexOf(words[i - 1]) >= 0 && BITCH_BEFORE.indexOf(words[i - 2]) >= 0);
+        var after = i + 1 < words.length && BITCH_AFTER.indexOf(words[i + 1]) >= 0;
+        if (before || after) {
+          strong = true;
+        }
+      } else if (STRONG_WORDS.indexOf(w) >= 0 || STRONG_STEMS.some(function (st) {
+        return w.indexOf(st) === 0;
+      })) {
+        strong = true;
+      } else if (MILD_WORDS.indexOf(w) >= 0) {
+        mild = true;
+      }
+    }
+    var notLove = joined.indexOf(' не люблю ') >= 0;
+    var love = !notLove && (hasCode(raw, LOVE_CODES) || phrase(joined, LOVE_PHRASES));
+    if (strong) {
+      return 'insult';
+    }
+    if (love) {
+      return 'love';
+    }
+    if (mild && directed) {
+      return 'insult';
+    }
+    if (hasCode(raw, SAD_CODES) || phrase(joined, SAD_PHRASES)) {
+      return 'sad';
+    }
+    if (hasCode(raw, LAUGH_CODES) || words.some(function (x) {
+      return LAUGH_WORDS.indexOf(x) >= 0 || (x.length >= 4 && isLaugh(x));
+    })) {
+      return 'laugh';
+    }
+    return 'none';
+  }
+
   // ---- лицо и отрисовка -------------------------------------------------------
 
   var PUPIL_NORMAL = 0;
@@ -1441,6 +1603,8 @@
     this.peekUntil = -99;
     this.emo = NEUTRAL;
     this.emoUntil = 0;
+    this.nextEmo = -1;
+    this.nextEmoSec = 0;
     this.idleX = new Float32Array(n);
     this.idleY = new Float32Array(n);
     this.nextSaccade = new Float32Array(n);
@@ -1624,6 +1788,27 @@
         this.feel(WINK, 0.7);
         this.interact();
         break;
+      case 'insulted':
+        this.napping = false;
+        this.interact();
+        this.glance(x, y, 1.2);
+        this.feel(SCARED, 1.3);
+        this.spawn(P_EXCL, -1);
+        this.nextEmo = SAD;
+        this.nextEmoSec = 1.8;
+        break;
+      case 'rude':
+        this.interact();
+        this.feel(ANGRY, 2.2);
+        break;
+      case 'laugh':
+        this.interact();
+        this.feel(HAPPY, 1.6);
+        break;
+      case 'sad_text':
+        this.interact();
+        this.feel(SAD, 2.2);
+        break;
       case 'peer_typing':
         if (!asleep) {
           this.glance(x, y, 2.5);
@@ -1655,6 +1840,9 @@
   };
 
   Brain.prototype.feel = function (e, sec) {
+    if (e !== SCARED) {
+      this.nextEmo = -1;
+    }
     this.emo = e;
     this.emoUntil = this.now + sec;
     if (e === SURPRISED) {
@@ -1841,6 +2029,11 @@
     var i;
     if (this.emo !== NEUTRAL && now >= this.emoUntil) {
       this.emo = NEUTRAL;
+      if (this.nextEmo >= 0) {
+        var ne = this.nextEmo;
+        this.nextEmo = -1;
+        this.feel(ne, this.nextEmoSec);
+      }
     }
     var stage = this.sleepStage();
     var asleep = stage === 2;
@@ -2538,6 +2731,7 @@
     cleanPasted: cleanPasted,
     parseSkin: parseSkin,
     cleanId: cleanId,
+    mood: mood,
     parseColor: parseColor,
     warnings: warnings,
     Renderer: Renderer,

@@ -289,18 +289,19 @@
   function emoGrid(el) {
     var base = source(el.getAttribute('data-emo-grid'));
     var list = [
-      ['happy', 'Радость', 'отправили сообщение'],
-      ['love', 'Влюблённость', 'сердечки, "люблю"'],
+      ['happy', 'Радость', 'отправили сообщение, смешное'],
+      ['love', 'Влюблённость', 'сердечки и признания'],
       ['surprised', 'Удивление', 'новое сообщение в открытом чате, проснулись'],
-      ['angry', 'Злость', 'три тапа подряд'],
-      ['sad', 'Грусть', 'удалили сообщение'],
+      ['scared', 'Испуг', 'вам пишут гадости'],
+      ['angry', 'Злость', 'три тапа подряд, вы грубите'],
+      ['sad', 'Грусть', 'удалили сообщение, грустный текст'],
       ['dizzy', 'Головокружение', 'тряска, перетаскивание'],
       ['ouch', 'Ай', 'тап по глазам'],
       ['wink', 'Подмигивание', 'скопировали текст'],
       ['suspicious', 'Подозрение', 'стёрли больше 12 символов подряд'],
       ['stare', 'Взгляд на вас', 'перестали печатать'],
       ['focus', 'Сосредоточенность', 'пока печатаете'],
-      ['curious', 'Любопытство', 'собеседник печатает'],
+      ['curious', 'Любопытство', 'кто-то печатает, в чате или в списке'],
       ['sleepy', 'Клюют носом', 'долго без дела'],
       ['asleep', 'Сон', 'ещё дольше без дела, или зажать и отпустить']
     ];
@@ -404,6 +405,67 @@
         el.textContent = 'Эмоции сломаны: ' + e.message;
       }
     });
+    moodTry();
     toc();
   });
+
+  /** Поле "попробуйте сами": настроение текста и реакция глаз, как в плагине. */
+  function moodTry() {
+    var box = document.getElementById('mood-try');
+    if (!box) {
+      return;
+    }
+    var stage = document.getElementById('mood-stage');
+    var input = document.getElementById('mood-input');
+    var out = document.getElementById('mood-out');
+    var dir = 'in';
+    var eyes = new PE.Eyes({skin: source('ex-step5'), fit: stage, fitPad: 24, fitHeight: 130, maxUnit: 8, minUnit: 3});
+    stage.appendChild(eyes.canvas);
+    box.querySelectorAll('[data-dir]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        dir = b.getAttribute('data-dir');
+        box.querySelectorAll('[data-dir]').forEach(function (x) {
+          x.classList.toggle('on', x === b);
+        });
+        show();
+      });
+    });
+    var NAMES = {
+      none: ['ничего особенного', null],
+      love: ['любовь', 'love'],
+      insult: ['гадости', null],
+      laugh: ['смех', 'laugh'],
+      sad: ['грусть', 'sad_text']
+    };
+    var timer = 0;
+    var last = '';
+    function show() {
+      var text = input.value;
+      var m = PE.mood(text);
+      var ev = m === 'insult' ? (dir === 'in' ? 'insulted' : 'rude') : NAMES[m][1];
+      if (m === 'none') {
+        ev = dir === 'out' ? 'send' : 'incoming';
+      }
+      var what = {
+        insulted: 'пугаются и плачут',
+        rude: 'злятся вместе с вами',
+        love: 'влюбляются',
+        laugh: 'смеются',
+        sad_text: 'грустят',
+        send: 'радуются отправке',
+        incoming: 'смотрят на сообщение'
+      }[ev];
+      out.textContent = text ? 'Настроение: ' + NAMES[m][0] + '. Глаза ' + what + '.' : 'Настроение появится здесь.';
+      var key = m + dir;
+      if (text && key !== last) {
+        var r = stage.getBoundingClientRect();
+        eyes.event(ev, r.left + 20, r.bottom - 10);
+      }
+      last = text ? key : '';
+    }
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(show, 350);
+    });
+  }
 })();

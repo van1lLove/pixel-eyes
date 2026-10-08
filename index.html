@@ -7,7 +7,7 @@
 <meta name="description" content="Плагин для exteraGram и AyuGram: пиксельные глаза поверх Telegram, которые следят за пальцем, засыпают, злятся и влюбляются. Свои глаза рисуются в редакторе.">
 <meta property="og:title" content="Pixel Eyes: глаза поверх Telegram">
 <meta property="og:description" content="Плагин для exteraGram и AyuGram. 14 наборов глаз, каталог, редактор своих.">
-<meta property="og:image" content="https://vladislavpolunin92-ux.github.io/pixel-eyes/previews/builtin.png">
+<meta property="og:image" content="https://van1llove.github.io/pixel-eyes/previews/builtin.png">
 <meta name="theme-color" content="#121019">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%231b1b22' d='M2 0h4v1H2zM1 1h1v1H1zM6 1h1v1H6zM0 2h1v4H0zM7 2h1v4H7zM1 6h1v1H1zM6 6h1v1H6zM2 7h4v1H2z'/%3E%3Cpath fill='%23fff' d='M2 1h4v1H2zM1 2h6v4H1zM2 6h4v1H2z'/%3E%3Cpath fill='%2315151c' d='M3 3h2v2H3z'/%3E%3C/svg%3E">
 <script>try{var t=localStorage.getItem('pe-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
@@ -29,7 +29,7 @@
       <a href="#eyes">Глаза</a>
       <a href="guide.html">Инструкция</a>
       <a href="editor.html">Редактор</a>
-      <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">GitHub</a>
+      <a href="https://github.com/van1lLove/pixel-eyes">GitHub</a>
       <button class="icon-btn" id="float-btn" type="button" title="Глаза поверх страницы, как в плагине">👀</button>
       <button class="icon-btn" id="theme-btn" type="button" title="Тема">🌗</button>
     </nav>
@@ -44,14 +44,14 @@
       </div>
       <div class="chips" id="hero-skins"></div>
       <h1>Глаза, которые следят за&nbsp;вами в&nbsp;Telegram</h1>
-      <p class="lead">Плагин для exteraGram и AyuGram. Пиксельные глаза живут поверх приложения: смотрят на палец и на курсор, засыпают без дела, злятся, если в них тыкать, и влюбляются от сердечек. 14 наборов внутри, ещё больше в каталоге, а свои рисуются прямо в настройках.</p>
+      <p class="lead">Плагин для exteraGram и AyuGram. Пиксельные глаза живут поверх приложения: смотрят на палец и на курсор, понимают, что вам пишут, пугаются гадостей, влюбляются от признаний, засыпают без дела и злятся, если в них тыкать. 14 наборов внутри, ещё больше в каталоге, а свои рисуются прямо в настройках.</p>
       <div class="typing-demo">
         <label class="sr-only" for="type-demo">Попробуйте напечатать</label>
-        <input id="type-demo" type="text" autocomplete="off" placeholder="Напечатайте что-нибудь и замрите">
+        <input id="type-demo" type="text" autocomplete="off" placeholder="Напечатайте и замрите. Или "люблю", "ахаха", гадость">
         <button class="btn" id="type-send" type="button" aria-label="Отправить">➤</button>
       </div>
       <div class="hero-actions">
-        <a class="btn" data-download href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases/latest/download/pixel_eyes.plugin">⬇️ Скачать плагин</a>
+        <a class="btn" data-download href="https://github.com/van1lLove/pixel-eyes/releases/latest/download/pixel_eyes.plugin">⬇️ Скачать плагин</a>
         <a class="btn alt" href="editor.html">✏️ Нарисовать свои</a>
       </div>
     </div>
@@ -62,7 +62,7 @@
       <h2>Как поставить</h2>
       <ol class="steps">
         <li class="card"><b>Скачайте файл</b>
-          <a data-download href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases/latest/download/pixel_eyes.plugin">pixel_eyes.plugin</a>, 218 КБ. Это и есть весь плагин.</li>
+          <a data-download href="https://github.com/van1lLove/pixel-eyes/releases/latest/download/pixel_eyes.plugin">pixel_eyes.plugin</a>, 218 КБ. Это и есть весь плагин.</li>
         <li class="card"><b>Отправьте его себе</b>
           В Избранное или в любой чат: "Поделиться" из загрузок браузера, либо скрепка в чате, "Файл", папка "Загрузки".</li>
         <li class="card"><b>Нажмите на файл в чате</b>
@@ -77,13 +77,16 @@
   <section id="what" style="background:var(--bg2)">
     <div class="wrap">
       <h2>Что они умеют</h2>
-      <p class="lead">Нажмите на карточку, и глаза наверху покажут, как это выглядит в Telegram. Скопируйте любой текст на странице: глаза подмигнут, как в плагине.</p>
+      <p class="lead">Нажмите на карточку, и глаза наверху покажут, как это выглядит в Telegram. Скопируйте любой текст на странице: глаза подмигнут, как в плагине. Обычный мат как междометие ("бля", "пиздец") гадостью не считается, глаза пугаются, только когда ругают кого-то.</p>
       <div class="grid3">
         <button class="card react" type="button" data-event="incoming"><span class="emo">📩</span><div><b>Новое сообщение</b><span>Оглядываются на пришедшее и удивляются</span></div></button>
         <button class="card react" type="button" data-event="send"><span class="emo">📤</span><div><b>Отправка</b><span>Радуются, глаза закрываются дугой</span></div></button>
-        <button class="card react" type="button" data-event="love"><span class="emo">❤️</span><div><b>Сердечки</b><span>Влюбляются от сердечек и "люблю": зрачки сердцем</span></div></button>
+        <button class="card react" type="button" data-event="love"><span class="emo">❤️</span><div><b>Признания</b><span>Влюбляются от сердечек и слов о любви, ваших и собеседника: зрачки сердцем</span></div></button>
+        <button class="card react" type="button" data-event="insulted"><span class="emo">😨</span><div><b>Вам пишут гадости</b><span>Смотрят на сообщение, пугаются, дрожат, потом плачут</span></div></button>
+        <button class="card react" type="button" data-event="rude"><span class="emo">🤬</span><div><b>Грубите вы</b><span>Злятся вместе с вами</span></div></button>
+        <button class="card react" type="button" data-event="laugh"><span class="emo">😂</span><div><b>Смешное</b><span>"Ахаха", "ору", 😂: глаза смеются дугой</span></div></button>
         <button class="card react" type="button" data-event="deleted"><span class="emo">🗑</span><div><b>Удалили сообщение</b><span>Грустят и плачут</span></div></button>
-        <button class="card react" type="button" data-event="peer_typing"><span class="emo">💬</span><div><b>Собеседник печатает</b><span>С интересом смотрят на шапку чата</span></div></button>
+        <button class="card react" type="button" data-event="peer_typing"><span class="emo">💬</span><div><b>Кто-то печатает</b><span>В чате смотрят на шапку, а в списке чатов прямо на строку "печатает..." у того, кто пишет</span></div></button>
         <button class="card react" type="button" data-event="emo:stare"><span class="emo">👀</span><div><b>Смотрят на вас</b><span>Перестали печатать: глаза поднимаются прямо на вас</span></div></button>
         <button class="card react" type="button" data-event="shake"><span class="emo">📳</span><div><b>Тряска телефона</b><span>Кружится голова, зрачки спиралью</span></div></button>
         <button class="card react" type="button" data-event="copy"><span class="emo">📋</span><div><b>Копирование</b><span>Подмигивают</span></div></button>
@@ -123,7 +126,7 @@
         <div class="card" style="padding:18px">
           <h3 style="margin-top:0">Реакции и сон</h3>
           <ul>
-            <li>Каждую реакцию можно выключить отдельно: палец, набор, взгляд на вас, сообщения, отправка, сердечки, "печатает", переходы, тряска, копирование, тапы</li>
+            <li>Каждую реакцию можно выключить отдельно: палец, набор, взгляд на вас, сообщения, отправка, любовь, текст сообщений, "печатает", переходы, тряска, копирование, тапы</li>
             <li><b>Засыпать без дела</b> через заданное число секунд (по умолчанию 90)</li>
             <li><b>Сонные ночью</b>: с полуночи до шести засыпают вдвое быстрее</li>
             <li><b>Устают от разряда</b>: меньше 15% без зарядки</li>
@@ -169,7 +172,7 @@
 <footer>
   <div class="wrap">
     <span>Pixel Eyes. Плагин и глаза: <a href="https://t.me/van1lLove">@van1lLove</a></span>
-    <span><a href="https://github.com/vladislavpolunin92-ux/pixel-eyes">Исходники каталога на GitHub</a> · <a href="https://github.com/vladislavpolunin92-ux/pixel-eyes/releases">Версии плагина</a></span>
+    <span><a href="https://github.com/van1lLove/pixel-eyes">Исходники каталога на GitHub</a> · <a href="https://github.com/van1lLove/pixel-eyes/releases">Версии плагина</a></span>
   </div>
 </footer>
 </body>

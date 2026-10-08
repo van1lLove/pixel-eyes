@@ -3,7 +3,7 @@
   'use strict';
 
   var PE = window.PixelEyes;
-  var REPO = 'https://github.com/vladislavpolunin92-ux/pixel-eyes';
+  var REPO = 'https://github.com/van1lLove/pixel-eyes';
   var DOWNLOAD = REPO + '/releases/latest/download/pixel_eyes.plugin';
   var BUILTIN = ['cartoon', 'cartoon_pink', 'anime', 'kawaii', 'cat', 'retro', 'robot', 'sleepy', 'grumpy', 'demon',
     'bloodshot', 'void', 'cyclops', 'swarm'];
@@ -489,9 +489,10 @@
       if (!text) {
         return;
       }
-      var love = /люблю|❤|♥|💕|💖|😍|🥰/i.test(text);
+      var m = PE.mood(text);
+      var ev = {love: 'love', insult: 'rude', laugh: 'laugh', sad: 'sad_text'}[m] || 'send';
       allEyes().forEach(function (e) {
-        e.event(love ? 'love' : 'send');
+        e.event(ev);
       });
       input.value = '';
       last = '';
