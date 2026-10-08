@@ -2417,7 +2417,17 @@
     this.refit();
   };
 
+  /** Часы мозга на "сейчас": если кадров давно не было (вкладка в фоне), событие не должно сразу истечь. */
+  Eyes.prototype.sync = function () {
+    var t = clock();
+    if (t - this.brain.now > 0.25) {
+      this.brain.now = t;
+      this.brain.lastNow = t;
+    }
+  };
+
   Eyes.prototype.event = function (name, x, y) {
+    this.sync();
     this.brain.event(name, x, y);
   };
 

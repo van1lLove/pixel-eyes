@@ -42,14 +42,21 @@
       <div class="stage" id="hero-stage">
         <div class="stage-hint">Водите мышкой или пальцем. Ткните в глаза</div>
       </div>
+      <div class="chat-demo">
+        <div class="chips" id="type-dir">
+          <button class="chip on" type="button" data-dir="out">✍️ Пишете вы</button>
+          <button class="chip" type="button" data-dir="in">📩 Пишут вам</button>
+        </div>
+        <div class="typing-demo">
+          <label class="sr-only" for="type-demo">Сообщение</label>
+          <input id="type-demo" type="text" autocomplete="off" enterkeyhint="send" placeholder="Напишите: люблю, ахаха, гадость">
+          <button class="btn" id="type-send" type="button" aria-label="Отправить">➤</button>
+        </div>
+        <p class="type-hint" id="type-hint">Пока печатаете, глаза бегают за курсором, а когда замрёте, смотрят на вас. Что вы пишете, они понимают сразу.</p>
+      </div>
       <div class="chips" id="hero-skins"></div>
       <h1>Глаза, которые следят за&nbsp;вами в&nbsp;Telegram</h1>
       <p class="lead">Плагин для exteraGram и AyuGram. Пиксельные глаза живут поверх приложения: смотрят на палец и на курсор, понимают, что вам пишут, пугаются гадостей, влюбляются от признаний, засыпают без дела и злятся, если в них тыкать. 14 наборов внутри, ещё больше в каталоге, а свои рисуются прямо в настройках.</p>
-      <div class="typing-demo">
-        <label class="sr-only" for="type-demo">Попробуйте напечатать</label>
-        <input id="type-demo" type="text" autocomplete="off" placeholder="Напечатайте и замрите. Или "люблю", "ахаха", гадость">
-        <button class="btn" id="type-send" type="button" aria-label="Отправить">➤</button>
-      </div>
       <div class="hero-actions">
         <a class="btn" data-download href="https://github.com/van1lLove/pixel-eyes/releases/latest/download/pixel_eyes.plugin">⬇️ Скачать плагин</a>
         <a class="btn alt" href="editor.html">✏️ Нарисовать свои</a>

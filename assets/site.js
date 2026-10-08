@@ -470,13 +470,71 @@
     });
 
     var input = document.getElementById('type-demo');
+    var hint = document.getElementById('type-hint');
     var last = '';
+    var dir = 'out';
+    var shown = '';
+    var moodTimer = 0;
+    var MOOD_NAMES = {love: 'любовь', insult: 'гадости', laugh: 'смех', sad: 'грусть'};
+    var WHAT = {
+      rude: 'злятся вместе с вами', insulted: 'смотрят на сообщение, пугаются, потом плачут', love: 'влюбляются',
+      laugh: 'смеются', sad_text: 'грустят', send: 'радуются отправке', incoming: 'оглядываются на сообщение'
+    };
+    /** Реакция на текст, как в плагине: свои гадости злят, чужие пугают. */
+    var reactTo = function (text, sending) {
+      var m = PE.mood(text);
+      var ev;
+      if (m === 'insult') {
+        ev = dir === 'in' ? 'insulted' : 'rude';
+      } else if (m !== 'none') {
+        ev = {love: 'love', laugh: 'laugh', sad: 'sad_text'}[m];
+      } else {
+        ev = sending ? (dir === 'in' ? 'incoming' : 'send') : null;
+      }
+      if (text) {
+        hint.innerHTML = m === 'none'
+          ? (sending ? 'Обычное сообщение: глаза ' + WHAT[ev] + '.'
+            : 'Пока ничего особенного. Попробуйте "люблю", "ахаха", "мне грустно" или гадость.')
+          : 'Глаза поняли: <b>' + MOOD_NAMES[m] + '</b>. ' + (dir === 'in' ? 'Пишут вам' : 'Пишете вы') +
+            ', поэтому глаза ' + WHAT[ev] + '.';
+      }
+      if (!ev) {
+        return;
+      }
+      if (!sending && (m + dir) === shown) {
+        return;
+      }
+      shown = sending ? '' : m + dir;
+      var r = input.getBoundingClientRect();
+      allEyes().forEach(function (e) {
+        e.sync();
+        e.event(ev, r.left + 30, r.top + r.height / 2);
+      });
+    };
     input.addEventListener('input', function () {
       var p = caretPoint(input);
       var delta = input.value.length - last.length;
       last = input.value;
       allEyes().forEach(function (e) {
+        e.sync();
         e.brain.typing(p.x, p.y, delta);
+      });
+      clearTimeout(moodTimer);
+      moodTimer = setTimeout(function () {
+        reactTo(input.value.trim(), false);
+      }, 450);
+    });
+    document.querySelectorAll('#type-dir [data-dir]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        dir = b.getAttribute('data-dir');
+        document.querySelectorAll('#type-dir [data-dir]').forEach(function (x) {
+          x.classList.toggle('on', x === b);
+        });
+        shown = '';
+        if (input.value.trim()) {
+          reactTo(input.value.trim(), false);
+        }
+        input.focus();
       });
     });
     input.addEventListener('blur', function () {
@@ -489,13 +547,11 @@
       if (!text) {
         return;
       }
-      var m = PE.mood(text);
-      var ev = {love: 'love', insult: 'rude', laugh: 'laugh', sad: 'sad_text'}[m] || 'send';
-      allEyes().forEach(function (e) {
-        e.event(ev);
-      });
+      clearTimeout(moodTimer);
+      reactTo(text, true);
       input.value = '';
       last = '';
+      shown = '';
     };
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {

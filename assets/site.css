@@ -895,11 +895,36 @@ footer .wrap {
   clip: rect(0 0 0 0);
 }
 
+.chat-demo {
+  max-width: 560px;
+  margin: 0 auto 24px;
+}
+
+.chat-demo .chips {
+  justify-content: center;
+  margin: 0 0 10px;
+}
+
+.type-hint {
+  font-size: 14.5px;
+  color: var(--muted);
+  min-height: 2.8em;
+  margin: 8px 0 0;
+}
+
+.type-hint b {
+  color: var(--text);
+}
+
 .typing-demo {
   display: flex;
   gap: 8px;
   max-width: 520px;
   margin: 0 auto 26px;
+}
+
+.chat-demo .typing-demo {
+  margin: 0 auto;
 }
 
 .typing-demo input {
