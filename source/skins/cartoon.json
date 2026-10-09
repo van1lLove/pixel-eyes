@@ -1,0 +1,46 @@
+{
+  "format": 1,
+  "id": "cartoon",
+  "name": "Мультяшные",
+  "author": "@van1lLove",
+  "description": "Круглые белые глаза с чёрным зрачком, как в мультике",
+  "tags": ["милые", "классика"],
+  "palette": {
+    "#": "#1b1b22",
+    "w": "#ffffff",
+    "s": "#dfe3ee",
+    "p": "#15151c",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "....####....",
+    "..##wwww##..",
+    ".#wwwwwwww#.",
+    ".#wwwwwwww#.",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    ".#swwwwwws#.",
+    ".#sswwwwss#.",
+    "..##ssss##..",
+    "....####...."
+  ],
+  "sclera": "ws",
+  "iris": [
+    ".pp.",
+    "pppp",
+    "pppp",
+    ".pp."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "h"
+  ],
+  "highlight_offset": [-1, -1],
+  "lid": "#cfd5e3",
+  "lash": "#1b1b22",
+  "travel": [3, 3],
+  "layout": {"count": 2, "gap": 3, "mirror": true},
+  "behavior": {"blink": [2.5, 6], "style": "smooth", "stare": 0.15}
+}

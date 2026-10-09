@@ -1,0 +1,57 @@
+{
+  "format": 1,
+  "id": "grumpy",
+  "name": "Злюка",
+  "description": "Насупленные брови и красная радужка, всем недоволен",
+  "tags": [
+    "забавные"
+  ],
+  "palette": {
+    "#": "#1f1410",
+    "w": "#f6efe6",
+    "r": "#b3261e",
+    "p": "#1a0b08",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "##..........",
+    ".####.......",
+    "...#####....",
+    ".....####...",
+    "..########..",
+    ".#wwwwwwww#.",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    "#wwwwwwwwww#",
+    ".#wwwwwwww#.",
+    "..########.."
+  ],
+  "sclera": "w",
+  "iris": [
+    ".rr.",
+    "rppr",
+    "rppr",
+    ".rr."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "h"
+  ],
+  "highlight_offset": [-1, -1],
+  "lid": "#9c7a6a",
+  "lash": "#2a1a14",
+  "travel": [3, 1],
+  "layout": {
+    "count": 2,
+    "gap": 2,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [3, 7],
+    "style": "snap",
+    "slant": 0.35,
+    "open": 0.85,
+    "stare": 0.4
+  },
+  "author": "@van1lLove"
+}

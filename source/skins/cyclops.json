@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "id": "cyclops",
+  "name": "Циклоп",
+  "description": "Один большой глаз с прожилками и змеиным зрачком",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#2a1d18",
+    "w": "#f2ead8",
+    "v": "#c23a3a",
+    "g": "#5f8a1a",
+    "y": "#c9e64a",
+    "p": "#0c0c0c",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "......########......",
+    "....##wwwwwwww##....",
+    "..##wvvwwwwwwwww##..",
+    ".#wvwwwwwwwwwwwvww#.",
+    ".#wwwwwwwwwwwwwwww#.",
+    "#wvvwwwwwwwwwwwwwvw#",
+    "#wwwwwwwwwwwwwwwvww#",
+    "#wwwwwwwwwwwwwwwwww#",
+    "#wvwwwwwwwwwwwwwwvw#",
+    ".#wwvwwwwwwwwwwvww#.",
+    ".#wwwwwwwwwwwwvwww#.",
+    "..##wwvwwwwwwvww##..",
+    "....##wwwwwwww##....",
+    "......########......"
+  ],
+  "sclera": "wv",
+  "iris": [
+    "..gg..",
+    ".gyyg.",
+    "gyppyg",
+    "gyppyg",
+    "gyppyg",
+    "gyppyg",
+    ".gyyg.",
+    "..gg.."
+  ],
+  "pupil": "p",
+  "highlight": [
+    "h"
+  ],
+  "highlight_offset": [-4, -3],
+  "highlight_fixed": true,
+  "lid": "#8c6e5e",
+  "lash": "#2a1810",
+  "travel": [5, 3],
+  "layout": {
+    "count": 1
+  },
+  "behavior": {
+    "blink": [4, 10],
+    "style": "snap",
+    "twitch": 0.3,
+    "stare": 0.5,
+    "creepy": true,
+    "speed": 1.2
+  },
+  "author": "@van1lLove"
+}

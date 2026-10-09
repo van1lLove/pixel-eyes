@@ -21,6 +21,8 @@
 
 Автор плагина: [@van1lLove](https://t.me/van1lLove), идея: [@psyhomane](https://t.me/psyhomane).
 
+Исходники плагина и сборка: [`source/`](source).
+
 ## Встроенные глаза
 
 ![Встроенные глаза](previews/builtin.png)

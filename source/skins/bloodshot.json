@@ -1,0 +1,57 @@
+{
+  "format": 1,
+  "id": "bloodshot",
+  "name": "Налитые кровью",
+  "description": "Красные прожилки, маленький зрачок, дёргаются и почти не моргают",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#3a2a22",
+    "w": "#efe7d6",
+    "v": "#c2272d",
+    "u": "#8c1a1f",
+    "i": "#6b1d15",
+    "p": "#0a0505"
+  },
+  "eye": [
+    ".....####.....",
+    "...##wwww##...",
+    "..#vwwwwwwu#..",
+    ".#wwvwwwwvww#.",
+    ".#vwwwwwwwwv#.",
+    "#wvwwwwwwwwww#",
+    "#uwwwwwwwwwvv#",
+    "#vvwwwwwwwwwu#",
+    "#wwwwwwwwwwvw#",
+    ".#wvwwwwwwwu#.",
+    ".#vwwwwwwvvw#.",
+    "..##wwwvww##..",
+    "....######...."
+  ],
+  "sclera": "wvu",
+  "iris": [
+    ".ii.",
+    "ippi",
+    "ippi",
+    ".ii."
+  ],
+  "pupil": "p",
+  "lid": "#b89a8a",
+  "lash": "#3a1a14",
+  "travel": [4, 3],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [6, 14],
+    "style": "twitch",
+    "twitch": 0.7,
+    "stare": 0.6,
+    "creepy": true,
+    "speed": 1.6
+  },
+  "author": "@van1lLove"
+}

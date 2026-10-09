@@ -1,0 +1,47 @@
+{
+  "format": 1,
+  "id": "retro",
+  "name": "Ретро",
+  "description": "Чёрные овалы с бликом, как в старых 8-битных играх",
+  "tags": [
+    "милые",
+    "ретро"
+  ],
+  "palette": {
+    "k": "#101010",
+    "h": "#ffffff"
+  },
+  "eye": [
+    ".kkkk.",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    "kkkkkk",
+    ".kkkk."
+  ],
+  "sclera": "k",
+  "iris": [
+    "hh",
+    "hh",
+    "h."
+  ],
+  "iris_offset": [0, -2],
+  "lid": "none",
+  "lash": "#101010",
+  "travel": [1, 2],
+  "layout": {
+    "count": 2,
+    "gap": 4,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [2.5, 6],
+    "style": "snap",
+    "stare": 0.2
+  },
+  "author": "@van1lLove"
+}

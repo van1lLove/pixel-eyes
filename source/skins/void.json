@@ -1,0 +1,49 @@
+{
+  "format": 1,
+  "id": "void",
+  "name": "Пустота",
+  "description": "Чёрные глаза с крошечным белым зрачком, медленно следят и не моргают",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#3d0c0c",
+    "k": "#050506",
+    "g": "#6b6b70",
+    "h": "#ffffff"
+  },
+  "eye": [
+    "...######...",
+    ".##kkkkkk##.",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    ".##kkkkkk##.",
+    "...######..."
+  ],
+  "sclera": "k",
+  "iris": [
+    ".g.",
+    "ghg",
+    ".g."
+  ],
+  "pupil": "h",
+  "lid": "#050506",
+  "lash": "#3d0c0c",
+  "travel": [3, 2],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "behavior": {
+    "blink": [0, 0],
+    "style": "smooth",
+    "speed": 0.45,
+    "stare": 0.8,
+    "creepy": true
+  },
+  "author": "@van1lLove"
+}

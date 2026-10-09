@@ -1,0 +1,63 @@
+# Ожидаемое настроение текста: Mood.java и его копия в repo/assets/eyes.js проверяются по этому списку.
+# Формат: ожидание<TAB>текст. Ожидание: none, love, insult, laugh, sad.
+insult	ты дебил
+insult	иди нахуй
+insult	пошёл нахуй со своими советами
+insult	он такой долбоёб, пиздец
+insult	ну ты и сука
+insult	сука ты
+insult	она сука
+insult	заткнись
+insult	ненавижу тебя
+insult	ты еблан что ли?
+insult	дурак
+insult	ты дура
+insult	уёбок
+insult	тупорылый
+insult	чмо
+insult	ты дееебил
+insult	ты дeбил
+insult	Мразь
+insult	🤬
+insult	иди в жопу
+insult	отвали от меня
+insult	ты меня достал
+insult	ну и придурок же он
+none	бля, пиздец
+none	сука, опять дождь
+none	сука, он такой классный
+none	нахуй не надо
+none	привет, как дела
+none	ты не дебил, просто устал
+none	даунгрейд телефона
+none	педикюр сделала
+none	всё кончено
+none	отбросить лишнее
+none	аха, понял
+none	ебать, красиво
+none	охуенно
+none	тупой вопрос, но как это работает
+none
+love	люблю тебя
+love	я тебя люблю ❤️
+love	❤️
+love	скучаю по тебе
+love	люблю тебя, дурак
+love	любимая моя
+love	целую
+love	i love you
+love	люблююю
+love	🥰
+sad	мне грустно
+sad	я тебя не люблю
+sad	💔
+sad	обидно
+sad	😢
+laugh	ахахахах
+laugh	ХАХАХА
+laugh	😂😂
+laugh	лол
+laugh	ору
+laugh	пхахах
+laugh	💀
+laugh	азазаз

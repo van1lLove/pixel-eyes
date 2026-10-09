@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "id": "swarm",
+  "name": "Рой",
+  "description": "Семь глаз разного размера, каждый смотрит и моргает сам по себе",
+  "tags": [
+    "жуткие"
+  ],
+  "palette": {
+    "#": "#2a1f1f",
+    "w": "#e8e0d0",
+    "v": "#b8423a",
+    "p": "#3a0d0d"
+  },
+  "eye": [
+    "..####..",
+    ".#wwww#.",
+    "#wwwwww#",
+    "#wvwwww#",
+    ".#wwww#.",
+    "..####.."
+  ],
+  "sclera": "wv",
+  "iris": [
+    "pp",
+    "pp"
+  ],
+  "pupil": "p",
+  "lid": "#9c7f72",
+  "lash": "#2a1f1f",
+  "travel": [2, 1],
+  "layout": {
+    "eyes": [
+      {
+        "x": 13,
+        "y": 5,
+        "scale": 2
+      },
+      {
+        "x": 0,
+        "y": 3
+      },
+      {
+        "x": 3,
+        "y": 13,
+        "mirror": true
+      },
+      {
+        "x": 31,
+        "y": 0,
+        "mirror": true
+      },
+      {
+        "x": 32,
+        "y": 11
+      },
+      {
+        "x": 20,
+        "y": 0
+      },
+      {
+        "x": 6,
+        "y": 0
+      }
+    ]
+  },
+  "behavior": {
+    "blink": [1.5, 7],
+    "style": "snap",
+    "twitch": 0.4,
+    "stare": 0.3,
+    "independent": true,
+    "creepy": true
+  },
+  "author": "@van1lLove"
+}

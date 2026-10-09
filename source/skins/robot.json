@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "id": "robot",
+  "name": "Робот",
+  "description": "Светодиодные глаза на тёмной панели",
+  "tags": [
+    "милые",
+    "техника"
+  ],
+  "palette": {
+    "#": "#4b5363",
+    "k": "#0a0f14",
+    "c": "#33e6ff",
+    "C": "#c9fbff",
+    "r": "#ff4f8b"
+  },
+  "eye": [
+    "############",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "#kkkkkkkkkk#",
+    "############"
+  ],
+  "sclera": "k",
+  "iris": [
+    "cccc",
+    "cCCc",
+    "cCCc",
+    "cccc"
+  ],
+  "lid": "#0a0f14",
+  "lash": "#1f7f8c",
+  "travel": [3, 2],
+  "layout": {
+    "count": 2,
+    "gap": 3,
+    "mirror": true
+  },
+  "frames": {
+    "closed": [
+      "############",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "#kcccccccck#",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "############"
+    ],
+    "happy": [
+      "############",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "#kkkkcckkkk#",
+      "#kkkckkckkk#",
+      "#kkckkkkckk#",
+      "#kckkkkkkck#",
+      "#kkkkkkkkkk#",
+      "#kkkkkkkkkk#",
+      "############"
+    ],
+    "love": [
+      "############",
+      "#kkkkkkkkkk#",
+      "#kkrrkkrrkk#",
+      "#krrrrrrrrk#",
+      "#krrrrrrrrk#",
+      "#kkrrrrrrkk#",
+      "#kkkrrrrkkk#",
+      "#kkkkrrkkkk#",
+      "#kkkkkkkkkk#",
+      "############"
+    ]
+  },
+  "behavior": {
+    "blink": [3, 8],
+    "style": "snap",
+    "stare": 0.2,
+    "speed": 1.4
+  },
+  "author": "@van1lLove"
+}

@@ -1,0 +1,4 @@
+out/
+test/out/
+build.local.sh
+__pycache__/
