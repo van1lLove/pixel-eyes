@@ -4,8 +4,8 @@ __description__ = ("Пиксельные глаза поверх приложе�
                    "а когда перестаёте, смотрят прямо на вас. Понимают текст сообщений: пугаются гадостей, "
                    "влюбляются от признаний, смеются над смешным. В списке чатов смотрят на того, кто "
                    "печатает. Кружатся от тряски, засыпают без дела. 14 наборов от милых аниме до жутких, "
-                   "свой редактор и каталог глаз.")
-__version__ = "1.2"
+                   "свой редактор и каталог глаз с поиском, тегами и публикацией своих наборов через проверяемые заявки.")
+__version__ = "1.3"
 __author__ = "@van1lLove (идея: @psyhomane)"
 __min_version__ = "12.5.1"
 __icon__ = "exteraPlugins/1"
@@ -89,6 +89,9 @@ FORMAT_HELP = (
     "взгляда, жуткие). Проще всего нарисовать в редакторе или взять встроенные и поправить. "
     "Готовый файл можно скинуть в любой чат: по нажатию на сообщение появится \"Добавить глаза\"."
 )
+
+
+# @@COMMUNITY@@
 
 
 class _Listener(dynamic_proxy(jclass("java.util.function.Consumer"))):
@@ -480,8 +483,12 @@ class PixelEyesPlugin(BasePlugin):
             if not (n.endswith(".json") or n.endswith(".eyes")):
                 continue
             try:
+                if os.path.getsize(os.path.join(folder, n)) > PE_MAX_BYTES:
+                    continue
                 with io.open(os.path.join(folder, n), encoding="utf-8") as f:
-                    out.append((os.path.join(folder, n), f.read()))
+                    text = f.read(PE_MAX_BYTES + 1)
+                    pe_validate(text)
+                    out.append((os.path.join(folder, n), text))
             except Exception:
                 continue
         return out
@@ -547,10 +554,10 @@ class PixelEyesPlugin(BasePlugin):
         if self._core is None:
             raise ValueError("ядро не загружено")
         text = self._clean_json(text)
+        data = pe_validate(text)
         err = str(self._call("check", text) or "")
         if err:
             raise ValueError(err)
-        data = json.loads(text)
         lib = self._library()
         builtin_ids = {s for s, _, p in lib if p is None}
         taken = {s for s, _, _ in lib}
@@ -634,18 +641,39 @@ class PixelEyesPlugin(BasePlugin):
 
     @staticmethod
     def _http_get(url, limit=300_000):
+        from urllib.parse import urlsplit
+        from java import jarray, jbyte
+        parsed = urlsplit(url)
+        if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            raise ValueError("Нужна HTTPS-ссылка без логина и пароля")
         URL = jclass("java.net.URL")
         conn = URL(url).openConnection()
+        conn.setInstanceFollowRedirects(False)
         conn.setConnectTimeout(10000)
         conn.setReadTimeout(15000)
         conn.setRequestProperty("User-Agent", "PixelEyes/1.0")
         code = int(conn.getResponseCode())
         if code != 200:
             raise ValueError(f"сервер ответил {code}")
+        if int(conn.getContentLength()) > limit:
+            raise ValueError("слишком большой файл")
         stream = conn.getInputStream()
         try:
-            scanner = jclass("java.util.Scanner")(stream, "UTF-8").useDelimiter("\\A")
-            text = str(scanner.next()) if scanner.hasNext() else ""
+            output = jclass("java.io.ByteArrayOutputStream")()
+            buf = jarray(jbyte)(4096)
+            total = 0
+            deadline = time.monotonic() + 25
+            while True:
+                if time.monotonic() > deadline:
+                    raise ValueError("истекло время скачивания")
+                n = int(stream.read(buf, 0, len(buf)))
+                if n < 0:
+                    break
+                total += n
+                if total > limit:
+                    raise ValueError("слишком большой файл")
+                output.write(buf, 0, n)
+            text = str(output.toString("UTF-8"))
         finally:
             stream.close()
         if len(text) > limit:
@@ -706,15 +734,27 @@ class PixelEyesPlugin(BasePlugin):
                 index = json.loads(self._http_get(url))
                 base = url.rsplit("/", 1)[0] + "/"
                 skins = []
-                for entry in index.get("skins", [])[:60]:
+                entries = index.get("skins", [])
+                if not isinstance(entries, list) or len(entries) > 500:
+                    raise ValueError("Неверный список каталога")
+                seen = set()
+                for entry in entries[:120]:
                     try:
                         rel = str(entry.get("url") or "")
-                        full = rel if rel.startswith("http") else base + rel
-                        text = self._http_get(full)
+                        if not re.fullmatch(r"skins/[a-z][a-z0-9_-]{0,60}\.json", rel):
+                            raise ValueError("Каталог содержит постороннюю ссылку")
+                        text = self._http_get(base + rel, PE_MAX_BYTES)
+                        data = pe_validate(text)
+                        if data["id"] in seen:
+                            raise ValueError("Повтор id")
+                        seen.add(data["id"])
+                        digest = entry.get("sha256")
+                        if digest and pe_hashlib.sha256(pe_canonical(data).encode("utf-8")).hexdigest() != digest:
+                            raise ValueError("Контрольная сумма не совпала")
                         if self._core is not None and not str(self._call("check", text)):
                             skins.append(text)
                     except Exception as e:
-                        self._log(f"каталог {entry.get('id')}: {e}")
+                        self._log(f"каталог: {e}")
                 if not skins:
                     raise ValueError("в каталоге пусто")
                 self._catalog = {self._id_of(t): t for t in skins}
@@ -726,25 +766,52 @@ class PixelEyesPlugin(BasePlugin):
         raise ValueError(str(last))
 
     def _open_catalog(self, *args):
+        cached = getattr(self, "_catalog", {})
+        if cached and time.monotonic() - getattr(self, "_catalog_at", 0) < 300:
+            self._show_catalog(list(cached.values()))
+            return
+        if getattr(self, "_catalog_loading", False):
+            self._toast("Каталог уже загружается")
+            return
+        self._catalog_loading = True
         self._toast("Загружаю каталог...")
 
         def work():
             try:
                 skins = self._fetch_catalog()
+                self._catalog_at = time.monotonic()
                 run_on_ui_thread(lambda: self._show_catalog(skins))
             except Exception as e:
                 self._toast(f"Каталог недоступен: {e}", "error")
+            finally:
+                self._catalog_loading = False
         threading.Thread(target=work, daemon=True).start()
 
-    def _show_catalog(self, skins):
+    def _show_catalog(self, skins, page=0):
         try:
             from ui.alert import AlertDialogBuilder
+            skins = pe_filtered(skins, str(self._opt("catalog_query", "") or ""),
+                                str(self._opt("catalog_tag", "") or "").strip(),
+                                {sid for sid, _, _ in self._library()},
+                                bool(self._opt("catalog_new", False)),
+                                int(self._opt("catalog_sort", 0) or 0))
+            if not skins:
+                self._toast("По этим фильтрам ничего не найдено. Измените поиск или тег")
+                return
+            pages = (len(skins) + 11) // 12
+            page = min(max(page, 0), pages - 1)
+            visible = skins[page * 12:(page + 1) * 12]
             activity = self._context()
-            view = self._call("createGallery", activity, SEP.join(skins), "", "catalog")
+            view = self._call("createGallery", activity, SEP.join(visible), "", "catalog")
             scroll = jclass("android.widget.ScrollView")(activity)
             scroll.addView(view)
             builder = AlertDialogBuilder(activity)
-            builder.set_title("Каталог глаз: нажмите, чтобы добавить")
+            builder.set_title(f"Каталог: {len(skins)}. Нажмите, чтобы добавить")
+            if pages > 1:
+                builder.set_message(f"Страница {page + 1} из {pages}")
+                # Повторно фильтруем исходный каталог: после установки учитывается фильтр новых.
+                builder.set_neutral_button("Дальше" if page + 1 < pages else "В начало",
+                    lambda d, w: (d.dismiss(), self._show_catalog(list(self._catalog.values()), (page + 1) % pages)))
             self._set_view(builder, scroll, 0.62)
             builder.set_positive_button("Закрыть", lambda d, w: d.dismiss())
             builder.show()
@@ -760,6 +827,90 @@ class PixelEyesPlugin(BasePlugin):
             self._toast(f"Добавлены и выбраны глаза \"{name}\"", "success")
         except Exception as e:
             self._toast(f"Не получилось: {e}", "error")
+
+    def _catalog_items(self):
+        tags = sorted({tag for text in getattr(self, "_catalog", {}).values()
+                       for tag in json.loads(text).get("tags", [])})
+        return [
+            Header(text="Фильтры каталога"),
+            self._ctl(Input, key="catalog_query", text="Поиск", default="",
+                      subtext="Название, описание, автор или тег"),
+            self._ctl(Input, key="catalog_tag", text="Тег", default="",
+                      subtext=("Один из тегов: " + ", ".join(tags)) if tags else "Один тег: милые или жуткие. Пусто: все"),
+            self._ctl(Switch, key="catalog_new", text="Только ещё не добавленные", default=False),
+            self._choice("catalog_sort", "Порядок", 0, ["Как в каталоге", "По названию", "По автору"]),
+            self._button("Показать глаза", self._open_catalog,
+                         subtext="Живой пример каждого набора. Фильтры сохраняются"),
+            self._button("Сбросить фильтры", self._reset_catalog_filters),
+        ]
+
+    def _reset_catalog_filters(self, *args):
+        for key, value in (("catalog_query", ""), ("catalog_tag", ""),
+                           ("catalog_new", False), ("catalog_sort", 0)):
+            self.set_setting(key, value)
+        self._toast("Фильтры сброшены")
+
+    # ---- публикация своих глаз -------------------------------------------------
+
+    def _publish_current(self, *args):
+        sid = str(self._opt("skin", "") or "")
+        if not sid or self._user_path(sid) is None:
+            self._toast("Выберите свои сохранённые глаза. Встроенные сначала измените копией", "error")
+            return
+        text = self._skin_json(sid)
+        try:
+            data = pe_validate(text)
+            from ui.alert import AlertDialogBuilder
+            ctx = self._context()
+            box = jclass("android.widget.LinearLayout")(ctx)
+            box.setOrientation(1)
+            fields = []
+            for hint, value in (("Название", data["name"]),
+                                ("Описание", data.get("description", "")),
+                                ("Теги через запятую", ", ".join(data.get("tags", [])))):
+                edit = jclass("android.widget.EditText")(ctx)
+                edit.setHint(hint)
+                edit.setText(value)
+                box.addView(edit)
+                fields.append(edit)
+            builder = AlertDialogBuilder(ctx)
+            builder.set_title("Опубликовать свои глаза")
+            builder.set_message("Отправится только рисунок, название, описание и теги. "
+                                "На GitHub подтвердите заявку своим аккаунтом. "
+                                "После проверки и одобрения набор появится у всех.")
+            builder.set_view(box, -2)
+
+            def submit(dialog, which):
+                try:
+                    candidate = dict(data)
+                    candidate["name"] = str(fields[0].getText()).strip()
+                    candidate["description"] = str(fields[1].getText()).strip()
+                    candidate["tags"] = list(dict.fromkeys(t.strip() for t in str(fields[2].getText()).split(",") if t.strip()))
+                    candidate["author"] = self._username()
+                    self._submission(candidate)
+                except Exception as e:
+                    self._toast(f"Заявка не подготовлена: {e}", "error")
+            builder.set_positive_button("Подготовить заявку", submit)
+            builder.set_negative_button("Отмена", lambda d, w: d.dismiss())
+            builder.show()
+        except Exception as e:
+            self._toast(f"Не получилось: {e}", "error")
+
+    def _submission(self, data):
+        from urllib.parse import urlencode
+        payload = pe_pack(pe_canonical(data))
+        body = "Хочу добавить свои глаза в каталог Pixel Eyes.\n\n```text\n" + payload + "\n```"
+        params = {"title": "[Eyes] " + data["name"], "body": body}
+        url = REPO_URL + "/issues/new?" + urlencode(params)
+        if len(url) > 7500:
+            # Не обрезаем большие рисунки ради ограничения длины ссылки браузера.
+            clip = jclass("android.content.ClipData").newPlainText("Заявка Pixel Eyes", body)
+            self._clipboard().setPrimaryClip(clip)
+            url = REPO_URL + "/issues/new?" + urlencode({"title": params["title"]})
+            self._toast("Заявка скопирована. Вставьте её в описание на GitHub и отправьте")
+        else:
+            self._toast("На GitHub нажмите Submit new issue. До этого заявка не отправлена")
+        self._open_url(url)
 
     # ---- редактор ------------------------------------------------------------------------
 
@@ -1117,8 +1268,8 @@ class PixelEyesPlugin(BasePlugin):
             self._button("Инструкция и онлайн-редактор", lambda *a: self._open_url(GUIDE_URL),
                          subtext="Подробно про каждое поле, урок с нуля, рисование в браузере"),
             Header(text="Добавить чужие"),
-            self._button("Каталог глаз", self._open_catalog,
-                         subtext="Глаза от других людей с живым примером, нажмите, чтобы добавить"),
+            Text(text="Каталог глаз", create_sub_fragment=self._catalog_items,
+                 subtext="Поиск, теги, авторы и только ещё не добавленные"),
             self._button("Из буфера обмена", self._import_clipboard,
                          subtext="Скопируйте JSON с глазами и нажмите сюда"),
             self._ctl(Input, key="import_url", text="Ссылка на JSON", default="",
@@ -1128,6 +1279,8 @@ class PixelEyesPlugin(BasePlugin):
                  subtext="Зажмите сообщение с JSON глаз или файлом .json, в меню будет \"Добавить глаза\""),
             Text(text="Папка с глазами", subtext=folder + "\nФайлы .json отсюда появятся в списке сами"),
             Header(text="Поделиться"),
+            self._button("Опубликовать свои глаза", self._publish_current,
+                         subtext="Выбранный свой набор: проверка, заявка на GitHub и одобрение"),
             self._button("Скопировать текущие", self._export_current,
                          subtext="JSON в буфер: отправьте другу, он добавит их из сообщения"),
         ]
