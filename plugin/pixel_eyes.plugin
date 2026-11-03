@@ -5,7 +5,7 @@ __description__ = ("Пиксельные глаза поверх приложе�
                    "влюбляются от признаний, смеются над смешным. В списке чатов смотрят на того, кто "
                    "печатает. Кружатся от тряски, засыпают без дела. 14 наборов от милых аниме до жутких, "
                    "свой редактор и каталог глаз с поиском, тегами и публикацией своих наборов через проверяемые заявки.")
-__version__ = "1.3"
+__version__ = "1.3.1"
 __author__ = "@van1lLove (идея: @psyhomane)"
 __min_version__ = "12.5.1"
 __icon__ = "exteraPlugins/1"
@@ -1124,7 +1124,7 @@ class PixelEyesPlugin(BasePlugin):
             self._toast("Заявка скопирована. Вставьте её в описание на GitHub и отправьте")
         else:
             self._toast("На GitHub нажмите Submit new issue. До этого заявка не отправлена")
-        self._open_url(url)
+        self._open_url(url, external=True)
 
     # ---- редактор ------------------------------------------------------------------------
 
@@ -1254,15 +1254,16 @@ class PixelEyesPlugin(BasePlugin):
         self._push()
         self._toast("Глаза вернулись на место")
 
-    def _open_url(self, url):
+    def _open_url(self, url, external=False):
         """Ссылка во встроенном браузере клиента, а если его нет, в обычном."""
         def go():
             ctx = self._context()
-            try:
-                jclass("org.telegram.messenger.browser.Browser").openUrl(ctx, url)
-                return
-            except Exception as e:
-                self._log(f"Browser.openUrl: {e}")
+            if not external:
+                try:
+                    jclass("org.telegram.messenger.browser.Browser").openUrl(ctx, url)
+                    return
+                except Exception as e:
+                    self._log(f"Browser.openUrl: {e}")
             try:
                 Intent = jclass("android.content.Intent")
                 Uri = jclass("android.net.Uri")
@@ -1270,7 +1271,12 @@ class PixelEyesPlugin(BasePlugin):
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 ctx.startActivity(intent)
             except Exception as e:
-                self._toast(f"Не открылось: {url}", "error")
+                try:
+                    clip = jclass("android.content.ClipData").newPlainText("Ссылка Pixel Eyes", url)
+                    self._clipboard().setPrimaryClip(clip)
+                    self._toast("Браузер не открылся. Ссылка скопирована: вставьте её в браузер вручную", "error")
+                except Exception:
+                    self._toast("Не удалось открыть браузер или скопировать ссылку", "error")
                 self._log(f"ссылка: {e}")
         run_on_ui_thread(go)
 
