@@ -406,6 +406,26 @@ def jclass(name):
             def addView(self, v):
                 self.child = v
         return SV
+    if name == "android.widget.LinearLayout":
+        class LL:
+            def __init__(self, ctx):
+                self.children = []
+            def setOrientation(self, value):
+                pass
+            def addView(self, view):
+                self.children.append(view)
+        return LL
+    if name == "android.widget.EditText":
+        class ET:
+            def __init__(self, ctx):
+                self.text = ""
+            def setHint(self, hint):
+                pass
+            def setText(self, text):
+                self.text = text
+            def getText(self):
+                return self.text
+        return ET
     if name == "org.telegram.messenger.FileLoader":
         class FL:
             @staticmethod
@@ -655,6 +675,57 @@ check("каталог: первый адрес недоступен, второ�
 p._on_core("pick:catalog_cat")
 drain()
 check("нажали в каталоге: добавлены и выбраны", p._settings["skin"] == "catalog_cat")
+
+print("6a. публикация и фильтры")
+opened = []
+p._open_url = opened.append
+own = json.loads(builtin_jsons()[0])
+own.update(id="community_test", name="Проверка публикации", tags=["милые"])
+p._submission(own)
+from urllib.parse import urlsplit, parse_qs
+submission_url = opened[-1]
+body = parse_qs(urlsplit(submission_url).query)["body"][0]
+check("заявка содержит только проверенный рисунок", ns["pe_unpack"](body) == own)
+check("заявка открывает GitHub без токена", submission_url.startswith(ns["REPO_URL"] + "/issues/new?") and "token" not in submission_url)
+own_sid, _ = p._save_user(json.dumps(own))
+p.set_setting("skin", own_sid)
+DIALOGS.clear()
+p._publish_current()
+form = DIALOGS[-1]
+check("форма публикации содержит название описание теги", len(form.view.children) == 3)
+form.view.children[0].setText("Новое имя")
+form.view.children[2].setText("милые, аниме, милые")
+form.press("positive")
+published = ns["pe_unpack"](parse_qs(urlsplit(opened[-1]).query)["body"][0])
+check("форма передаёт правки и убирает повторы тегов", published["name"] == "Новое имя" and published["tags"] == ["милые", "аниме"])
+before_count = len(opened)
+form.view.children[0].setText("x" * 41)
+form.press("positive")
+drain()
+check("неверные метаданные не отправляются", len(opened) == before_count and TOASTS[-1][0] == "error")
+opened.clear()
+p.set_setting("skin", "cartoon")
+p._publish_current()
+drain()
+check("встроенные напрямую публиковать нельзя", not opened and TOASTS[-1][0] == "error")
+p.set_setting("catalog_query", "ничего такого нет")
+p._show_catalog(list(p._catalog.values()))
+drain()
+check("пустой результат фильтра объяснён", "фильтр" in TOASTS[-1][1])
+p._reset_catalog_filters()
+check("сброс фильтров", p._opt("catalog_query") == "" and not p._opt("catalog_new"))
+# Внешний путь в index.json не должен даже скачиваться.
+seen_urls = []
+def hostile_get(url, limit=300000):
+    seen_urls.append(url)
+    return json.dumps({"skins": [{"url": "https://evil.test/payload.py"}]})
+p._http_get = hostile_get
+try:
+    p._fetch_catalog()
+except ValueError:
+    pass
+check("внешние ссылки каталога не запрашиваются", all("evil.test" not in u for u in seen_urls))
+p.set_setting("skin", "catalog_cat")
 
 print("7. выгрузка")
 p.on_plugin_unload()

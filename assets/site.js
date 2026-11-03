@@ -4,7 +4,7 @@
 
   var PE = window.PixelEyes;
   var REPO = 'https://github.com/van1lLove/pixel-eyes';
-  var DOWNLOAD = REPO + '/releases/latest/download/pixel_eyes.plugin';
+  var DOWNLOAD = REPO + '/raw/refs/heads/main/plugin/pixel_eyes.plugin';
   var BUILTIN = ['cartoon', 'cartoon_pink', 'anime', 'kawaii', 'cat', 'retro', 'robot', 'sleepy', 'grumpy', 'demon',
     'bloodshot', 'void', 'cyclops', 'swarm'];
 

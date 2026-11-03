@@ -12,7 +12,9 @@
         "космос"
       ],
       "url": "skins/alien.json",
-      "preview": "previews/alien.png"
+      "preview": "previews/alien.png",
+      "sha256": "6872a7d2f6ef30d6ee0497cd2889a3535ebc851aa15c895ec7872898e4e85c48",
+      "art_sha256": "28f75977099dbb2d458e8f7c4e059a1f1d356f82bf2e53cdf57f8b2ce3405ab4"
     },
     {
       "id": "owl",
@@ -24,7 +26,9 @@
         "животные"
       ],
       "url": "skins/owl.json",
-      "preview": "previews/owl.png"
+      "preview": "previews/owl.png",
+      "sha256": "367ed4536576365e0256967ab1b56d9435477b384fbc1eb5495a6d4107119de9",
+      "art_sha256": "05f2ec5a7f6348514dfc3b38e861cebda17fceed988cab63ea2fd8fcd28894b4"
     },
     {
       "id": "zombie",
@@ -36,7 +40,9 @@
         "забавные"
       ],
       "url": "skins/zombie.json",
-      "preview": "previews/zombie.png"
+      "preview": "previews/zombie.png",
+      "sha256": "cf46d9dec1ec763b0d50b452a6fa791357af615e04f557d9ced6c784b5017435",
+      "art_sha256": "05bae2a06aa5ddf8b2fc194dc5e2a5dd9364385feb3541874fb791ad433cb8a0"
     },
     {
       "id": "neon",
@@ -48,7 +54,9 @@
         "яркие"
       ],
       "url": "skins/neon.json",
-      "preview": "previews/neon.png"
+      "preview": "previews/neon.png",
+      "sha256": "13fd023bec685eb1dbceb52d9a0368715e02a8dda65f326f08d397f289b24a46",
+      "art_sha256": "f90109be31f7984bc61d7214b0092e89950eac3906790546adecca8edab0b5c0"
     },
     {
       "id": "frog",
@@ -60,7 +68,9 @@
         "животные"
       ],
       "url": "skins/frog.json",
-      "preview": "previews/frog.png"
+      "preview": "previews/frog.png",
+      "sha256": "a5c3d8c18a0f4df86a1ecd9005ce438744e3ba59fae838b5bd751d0add52ca3f",
+      "art_sha256": "fc3ed0af3f103f0e300502639e89adba0b49dc467ddb765526eb06f0df11a72c"
     },
     {
       "id": "ghost",
@@ -71,7 +81,9 @@
         "жуткие"
       ],
       "url": "skins/ghost.json",
-      "preview": "previews/ghost.png"
+      "preview": "previews/ghost.png",
+      "sha256": "81db450e4930ff5d79caa925c8d4776969a0615bd3a0ad16076625d8b1e2fc90",
+      "art_sha256": "a1bfcd3cab528ec5e8082f115516d3cb14d6e4c6fd154e9261c720502ad4bc9d"
     }
   ]
 }

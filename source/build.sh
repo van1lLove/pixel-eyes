@@ -40,6 +40,10 @@ echo "DEX: $(wc -c < "$OUT/classes.dex") байт"
 import io, sys
 tpl, b64, out = sys.argv[1:4]
 s = io.open(tpl, encoding="utf-8").read()
+import os
+community = io.open(os.path.join(os.path.dirname(tpl), "community.py"), encoding="utf-8").read()
+assert s.count("# @@COMMUNITY@@") == 1
+s = s.replace("# @@COMMUNITY@@", community)
 data = io.open(b64, encoding="ascii").read().strip()
 assert s.count('"@@DEX@@"') == 1, "метка ядра в шаблоне не найдена"
 s = s.replace('"@@DEX@@"', '"' + data + '"', 1)

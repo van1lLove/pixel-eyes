@@ -1,5 +1,7 @@
 # Pixel Eyes
 
+**Версия 1.3:** публикация своих глаз из настроек через проверяемые заявки, фильтры каталога и строгая проверка импортируемых рисунков. [Как устроены публикация и модерация](community/README.md).
+
 Плагин для **exteraGram** и **AyuGram**: пиксельные глаза поверх Telegram, которые живут своей жизнью:
 
 - следят за пальцем, где бы вы ни коснулись экрана;
@@ -12,7 +14,7 @@
 
 | | |
 |---|---|
-| ⬇️ **[Скачать плагин](https://github.com/van1lLove/pixel-eyes/releases/latest/download/pixel_eyes.plugin)** | `pixel_eyes.plugin`, все версии в [Releases](https://github.com/van1lLove/pixel-eyes/releases) |
+| ⬇️ **[Скачать плагин](https://github.com/van1lLove/pixel-eyes/raw/refs/heads/main/plugin/pixel_eyes.plugin)** | `pixel_eyes.plugin`, все версии в [Releases](https://github.com/van1lLove/pixel-eyes/releases) |
 | 🌐 **[Сайт](https://van1llove.github.io/pixel-eyes/)** | живые глаза, все наборы, как поставить |
 | 📖 **[Инструкция: свои глаза](https://van1llove.github.io/pixel-eyes/guide.html)** | урок с нуля, каждое поле файла, эмоции, свои кадры, ошибки |
 | ✏️ **[Онлайн-редактор](https://van1llove.github.io/pixel-eyes/editor.html)** | рисуйте глаза в браузере и отправляйте файлом в Telegram |
