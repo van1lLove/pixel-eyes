@@ -678,7 +678,8 @@ check("нажали в каталоге: добавлены и выбраны", 
 
 print("6a. публикация и фильтры")
 opened = []
-p._open_url = opened.append
+open_modes = []
+p._open_url = lambda url, external=False: (opened.append(url), open_modes.append(external))
 own = json.loads(builtin_jsons()[0])
 own.update(id="community_test", name="Проверка публикации", tags=["милые"])
 p._submission(own)
@@ -687,6 +688,7 @@ submission_url = opened[-1]
 body = parse_qs(urlsplit(submission_url).query)["body"][0]
 check("заявка содержит только проверенный рисунок", ns["pe_unpack"](body) == own)
 check("заявка открывает GitHub без токена", submission_url.startswith(ns["REPO_URL"] + "/issues/new?") and "token" not in submission_url)
+check("заявка запускает внешний браузер", open_modes[-1] is True)
 own_sid, _ = p._save_user(json.dumps(own))
 p.set_setting("skin", own_sid)
 DIALOGS.clear()
