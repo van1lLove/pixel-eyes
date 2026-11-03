@@ -84,6 +84,20 @@
       "preview": "previews/ghost.png",
       "sha256": "81db450e4930ff5d79caa925c8d4776969a0615bd3a0ad16076625d8b1e2fc90",
       "art_sha256": "a1bfcd3cab528ec5e8082f115516d3cb14d6e4c6fd154e9261c720502ad4bc9d"
+    },
+    {
+      "id": "u297400764_i2_amber",
+      "name": "Янтарь",
+      "author": "@van1lLove",
+      "description": "Тёплые янтарные светодиоды на графитовой панели",
+      "tags": [
+        "техника",
+        "тёплые"
+      ],
+      "url": "skins/u297400764_i2_amber.json",
+      "sha256": "e601241552f72086dfe1d03ef4b02b0f68b78faa0505165769cda3d56912abb3",
+      "art_sha256": "25999200c7dc0613fe2be6138490d235e17a53e3240bc6e9241cb3e28bccf6b1",
+      "submission": 2
     }
   ]
 }
