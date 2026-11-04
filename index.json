@@ -98,6 +98,21 @@
       "sha256": "e601241552f72086dfe1d03ef4b02b0f68b78faa0505165769cda3d56912abb3",
       "art_sha256": "25999200c7dc0613fe2be6138490d235e17a53e3240bc6e9241cb3e28bccf6b1",
       "submission": 2
+    },
+    {
+      "id": "u297400764_i5_star_pup",
+      "name": "Звёздный щенок",
+      "author": "@van1lLove",
+      "description": "Большие синие глаза с бирюзово-жёлтым переливом и двумя бликами, пастельный фурри-стиль",
+      "tags": [
+        "милые",
+        "фурри",
+        "аниме"
+      ],
+      "url": "skins/u297400764_i5_star_pup.json",
+      "sha256": "0876b189234da05763303d6dd291be8e4dc66758e9c7997d897dbce77ff6a835",
+      "art_sha256": "82faebeb120fb56e6b98a1143174b64ee5cfe93bf99f69a545e6459b51b6eeff",
+      "submission": 5
     }
   ]
 }
