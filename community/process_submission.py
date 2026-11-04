@@ -59,8 +59,20 @@ def prepare(issue, index):
     return sid, canonical, updated
 
 
+def preview_link(canonical):
+    payload = validation.pe_pack(canonical).split(validation.PE_MARKER, 1)[1]
+    # Fragment is not sent to the server; only bounded validated drawing data goes here.
+    return "https://van1llove.github.io/pixel-eyes/preview.html#v1=" + payload
+
+
 def main():
     event = json.loads(Path(os.environ["GITHUB_EVENT_PATH"]).read_text(encoding="utf-8"))
+    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch":
+        number = str(event.get("inputs", {}).get("issue_number", ""))
+        if not re.fullmatch(r"[1-9][0-9]{0,9}", number):
+            raise ValueError("Invalid issue number")
+        event["issue"] = api("GET", "/issues/" + number)
+        event["action"] = "opened"
     issue = event["issue"]
     body = issue.get("body") or ""
     if "pull_request" in issue or validation.PE_MARKER not in body:
@@ -72,7 +84,7 @@ def main():
     index = json.loads((ROOT / "index.json").read_text(encoding="utf-8"))
     if event.get("action") == "opened":
         try:
-            prepare(issue, index)
+            _, canonical, _ = prepare(issue, index)
             try:
                 api("POST", "/labels", {"name": "approved-skin", "color": "6f42c1",
                     "description": "Owner approved the submitted eyes"})
@@ -82,7 +94,10 @@ def main():
             message = ("Формат прошёл проверку. В каталог ещё не опубликовано. "
                        "Владелец проверит рисунок и при одобрении поставит метку `approved-skin`. "
                        "После этого появится PR с JSON и записью каталога. "
-                       "Автор набора в каталоге: аккаунт GitHub отправителя.")
+                       "Автор набора в каталоге: аккаунт GitHub отправителя.\n\n"
+                       "[Посмотреть глаза и проверить эмоции](" + preview_link(canonical) + ")\n\n"
+                       "Предпросмотр содержит снимок проверенного рисунка. "
+                       "Открытие ссылки не добавляет набор в каталог.")
         except (ValueError, TypeError, KeyError) as e:
             message = "Заявка отклонена проверкой формата: " + str(e)[:300] + ". Исправьте набор в плагине и создайте новую заявку."
         api("POST", "/issues/%d/comments" % number, {"body": message})
