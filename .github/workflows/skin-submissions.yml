@@ -2,13 +2,19 @@ name: Community eyes submissions
 on:
   issues:
     types: [opened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to validate and preview
+        required: true
+        type: string
 permissions: {}
 concurrency:
-  group: skin-submission-${{ github.event.issue.number }}
+  group: skin-submission-${{ github.event.issue.number || inputs.issue_number }}
   cancel-in-progress: false
 jobs:
   validate:
-    if: github.event.action == 'opened'
+    if: github.event.action == 'opened' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 3
     permissions:

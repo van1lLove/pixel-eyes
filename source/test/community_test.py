@@ -104,6 +104,34 @@ class CommunityTest(unittest.TestCase):
                 self.assertEqual(api.call_count, 1)
                 self.assertEqual(api.call_args.args[0], "GET")
 
+    def test_preview_roundtrip_and_dispatch(self):
+        import tempfile
+        from unittest.mock import patch
+        spec = importlib.util.spec_from_file_location("submission_preview", SITE / "community/process_submission.py")
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        original = c.pe_canonical(self.skin)
+        link = m.preview_link(original)
+        self.assertEqual(c.pe_unpack(c.PE_MARKER + link.split('#v1=')[1]), self.skin)
+        issue = {"number": 78, "body": c.pe_pack(original), "user": {"login": "friend", "id": 123}}
+        calls = []
+        def api(method, path, data=None):
+            calls.append((method, path, data))
+            return issue if method == "GET" else {}
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "event.json"
+            path.write_text(json.dumps({"inputs": {"issue_number": "78"}}), encoding="utf-8")
+            with patch.dict(m.os.environ, {"GITHUB_EVENT_PATH": str(path), "GITHUB_EVENT_NAME": "workflow_dispatch"}), patch.object(m, "api", side_effect=api):
+                m.main()
+            comment = next(data['body'] for method, target, data in calls if target == '/issues/78/comments')
+            self.assertIn('preview.html#v1=', comment)
+            self.assertFalse(any('/git/' in target or target == '/pulls' for _, target, _ in calls))
+            path.write_text(json.dumps({"inputs": {"issue_number": "../git/refs"}}), encoding="utf-8")
+            with patch.dict(m.os.environ, {"GITHUB_EVENT_PATH": str(path), "GITHUB_EVENT_NAME": "workflow_dispatch"}), patch.object(m, "api") as mocked:
+                with self.assertRaises(ValueError):
+                    m.main()
+                mocked.assert_not_called()
+
     def test_approved_submission_only_creates_two_data_files(self):
         import tempfile
         from unittest.mock import patch
